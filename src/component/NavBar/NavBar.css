@@ -1,0 +1,67 @@
+.nav-header {
+    max-width: 100%;
+    padding: 1px 15px;
+    background-color: #452c79;
+}
+
+.navbar-main {
+    margin: 5px 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.navbar-left {
+    font-size: 22px;
+    align-self: center;
+}
+
+.logo-link {
+    text-decoration: none;
+    color: beige;
+}
+
+.navbar-right {
+    display: flex;
+    gap: 1rem;
+    align-self: center;
+}
+
+.icon {
+    display: flex;
+    padding-right: 1.2rem;
+    gap: 10px;
+    color: white;
+}
+.nav-wishlist , .nav-cart {
+    align-self: center;
+}
+
+.search-container {
+    flex: 0.3;
+    display: flex;
+    position: relative;
+}
+
+.fa-search {
+    position: absolute;
+    top: 11px;
+    right: 7px;
+}
+
+.search-bar {
+    width: 100%;
+    height: 36px;
+    border-radius: 5px;
+    border: none;
+    padding-left: 10px;
+}
+
+.login-btn {
+    width: 100%;
+    height: 100%;
+    border-radius: 5px;
+    font-size: 15px;
+    border: none;
+    padding: 5px 10px;
+}
+

@@ -1,0 +1,42 @@
+.home-container {
+    margin: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+}
+
+.container-ct {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    gap: 20px;
+}
+
+.category-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    object-fit: contain;
+    gap: 25px;
+    margin-top: 10px;
+}
+
+.category-box {
+   width: 300px;
+   height: 250px;
+   cursor: pointer;
+   background-color: bisque;
+   border-radius: 10px;
+   border: 2px dotted #1c0303;
+}
+
+.cat-details {
+    margin: 50px 15px;
+}
+
+.image-container > img{
+    margin: 50px;
+    width: 91%;
+    height: 300px;
+    object-fit: cover;
+}
