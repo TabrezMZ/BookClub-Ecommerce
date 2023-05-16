@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import logo from "./logo.png";
 import Mockman from "mockman-js";
-import { Home } from "./pages";
+import { Home, Product } from "./pages";
 import { NavBar } from "./component/NavBar/NavBar";
 
 function App() {
@@ -12,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/testapi" element={<Mockman />} />
         <Route path="/" element={<Home/>} />
+        <Route path="/products" element={<Product/>} />
       </Routes>
     </div>
   );
