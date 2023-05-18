@@ -1,20 +1,26 @@
 import { useEffect, useState } from 'react'
 import './Home.css'
 import axios from 'axios';
+import {useNavigate} from "react-router-dom"
+import { useProduct } from "../../context/ProductContext"
 
 export const Home = () => {
+    const navigate = useNavigate();
+    const { productState,productDispatch } = useProduct()
     const [categories, setCategories] = useState([]);
     // console.log(categories)
 
     useEffect(() => {
         axios
             .get('/api/categories')
-            .then((res) => setCategories(res.data.categories))
+            .then((res) => setCategories(res.data.categories),productDispatch({ type: 'CLEAR_FILTER' }))
             .catch((err) => console.error(err))
     }, [])
 
     const categoriesHandlre = (categoryName) => {
         console.log(categoryName)
+        productDispatch({type : 'CATEGORY_FILTER_ADD', payload : categoryName})
+        navigate("/products")
     }
 
     return (
