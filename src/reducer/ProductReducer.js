@@ -39,19 +39,19 @@ export const productsReducer = (state, action) => {
             }
         case 'ADD_TO_WISHLIST_PRODUCT' : 
         return{
-            ...state, initialProducts : state.initialProducts.map((product)=> product._id === +action.payload ? {...product, inWishlist : true}: product)
+            ...state, initialProducts : state.initialProducts.map((product)=> product._id === action.payload ? {...product, inWishlist : true}: product)
         }
         case 'REMOVE_FROM_WISHLIST_PRODUCT' : 
         return{
-            ...state, initialProducts : state.initialProducts.map((product)=> product._id === +action.payload ? {...product, inWishlist : false}: product)
+            ...state, initialProducts : state.initialProducts.map((product)=> product._id === action.payload ? {...product, inWishlist : false}: product)
         }
         case 'ADD_TO_CART_PRODUCT' : 
         return{
-            ...state, initialProducts : state.initialProducts.map((product)=> product._id === +action.payload ? {...product, inCart : true}: product)
+            ...state, initialProducts : state.initialProducts.map((product)=> product._id === action.payload ? {...product, inCart : true}: product)
         }
         case 'REMOVE_FROM_CART_PRODUCT' : 
         return{
-            ...state, initialProducts : state.initialProducts.map((product)=> product._id === +action.payload ? {...product, inCart : false}: product)
+            ...state, initialProducts : state.initialProducts.map((product)=> product._id === action.payload ? {...product, inCart : false}: product)
         }
         case 'CLEAR_FILTER':
             return {

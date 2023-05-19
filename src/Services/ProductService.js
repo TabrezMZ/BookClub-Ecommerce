@@ -24,7 +24,7 @@ export const getCart = async () => {
 }
 export const addToCart = async (productItem, productDispatch) => {
     try {
-        const response = await axios.post(`/api/user/cart`,productItem , {
+        const response = await axios.post(`/api/user/cart`,{product : productItem} , {
             headers : {
                 authorization : localStorage.getItem('token')
             }
@@ -39,7 +39,7 @@ export const addToCart = async (productItem, productDispatch) => {
 
 export const removeFromCart = async (productItem,productDispatch)=> {
     try {
-        const response = await axios.delete(`/api/user/cart/${productItem}`,{
+        const response = await axios.delete(`/api/user/cart/${productItem._id}`,{
             headers : {
                 authorization : localStorage.getItem('token')
             }
@@ -49,6 +49,45 @@ export const removeFromCart = async (productItem,productDispatch)=> {
         alert('product remove from cart succesfully')
     } catch (error) {
         console.error(error);
+    }
+}
+
+export const addQuantityInCart = async (productItem,productDispatch) => {
+    try {
+        const response = await axios.post(`/api/user/cart/${productItem._id}`,
+        {
+            action : {
+                type : 'increment'
+            },
+           
+        },
+        {
+            headers : {
+                authorization : localStorage.getItem('token')
+            }
+        })
+        console.log(response.data.cart);
+    } catch (error) {
+        console.error(error)
+    }
+}
+export const removeQuantityInCart = async (productItem,productDispatch) => {
+    try {
+        const response = await axios.post(`/api/user/cart/${productItem.id}`,
+        {
+            action : {
+                type : 'decrement'
+            },
+           
+        },
+        {
+            headers : {
+                authorization : localStorage.getItem('token')
+            }
+        })
+        console.log(response.data.cart);
+    } catch (error) {
+        console.error(error)
     }
 }
 
@@ -67,13 +106,13 @@ export const getwishlist = async () => {
 
 export const addToWishList = async (productItem, productDispatch) => {
     try {
-        const response = await axios.post(`/api/user/wishlist`,productItem , {
+        const response = await axios.post(`/api/user/wishlist`,{product : productItem} , {
             headers : {
                 authorization : localStorage.getItem('token')
             }
         })
         console.log(response.data.wishlist);
-        productDispatch({type : 'ADD_TO_WISHLIST_PRODUCT', payload :productItem._id })
+        productDispatch({type : 'ADD_TO_WISHLIST_PRODUCT', payload :productItem.id })
         alert('product add in wishlist succesfully')
     } catch (error) {
         console.error(error)
@@ -83,7 +122,7 @@ export const addToWishList = async (productItem, productDispatch) => {
 
 export const removeFromWishlist = async (productItem,productDispatch)=> {
     try {
-        const response = await axios.delete(`/api/user/wishlist/${productItem}`,{
+        const response = await axios.delete(`/api/user/wishlist/${productItem._id}`,{
             headers : {
                 authorization : localStorage.getItem('token')
             }

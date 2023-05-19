@@ -2,14 +2,14 @@ import { useParams } from "react-router-dom"
 import { useProduct } from "../../context/ProductContext"
 import { useEffect, useState } from "react"
 import axios from "axios"
-import {addToCart, removeFromCart } from "../../Services/ProductService"
+import {addToCart, addToWishList, removeFromCart, removeFromWishlist } from "../../Services/ProductService"
 
 export const ProductPage = () => {
     const {productId} = useParams()
     const { productState : {initialProducts},productDispatch } = useProduct()
     // const [product , setProduct] = useState()
     // console.log(product);
-    const product = initialProducts?.find((product)=> product._id===+productId)
+    const product = initialProducts?.find((product)=> product._id=== productId)
     // console.log(product);
     // console.log(product);
 
@@ -26,7 +26,7 @@ export const ProductPage = () => {
           <p> {product?.category}</p>
           <p> {product?.price}</p>
           {product?.inCart ? <button onClick={()=> removeFromCart(product, productDispatch)}>Remove To Cart</button> : <button onClick={()=>addToCart(product, productDispatch)}>Add To Cart</button>}
-          {product?.inWishlist ? <button>Remove To Wishlist</button> : <button>Add To Wishlist</button>}
+          {product?.inWishlist ? <button onClick={()=>removeFromWishlist(product,productDispatch)}>Remove To Wishlist</button> : <button onClick={()=> addToWishList(product, productDispatch)}>Add To Wishlist</button>}
         </div>
     )
 }
