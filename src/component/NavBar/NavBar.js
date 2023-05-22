@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
   const { productState, productDispatch } = useProduct();
+  const { wishlist , cart } = productState;
   const navigate = useNavigate();
   const searchFilter = (e) => {
     productDispatch({ type: "SEARCH_FILTER", payload: e.target.value });
@@ -35,17 +36,17 @@ export const NavBar = () => {
                 onClick={() => navigate("/wishlist")}
               >
                 <i className="fa fa-heart" title="Wishlist"></i>
-                <div className="notification-icon flex-center">
-                  {/* <span>{wishlist.length}</span> */}
-                </div>
+                {wishlist.length >0 && <div className="notification-icon flex-center">
+                  <span>{wishlist.length}</span>
+                </div>}
               </div>
             </li>
             <li className="nav-cart" onClick={() => navigate("/cart")}>
               <div className="icon cart-badge">
                 <i className="fa fa-shopping-cart" title="Cart"></i>
-                  <div className="notification-icon flex-center">
-                    {/* <span>{cart.length}</span> */}
-                  </div>
+                  {cart.length > 0 && <div className="notification-icon flex-center">
+                    <span>{cart.length}</span>
+                  </div>}
               </div>
             </li>
             <li onClick={() => navigate("/user_profile")}>

@@ -1,37 +1,33 @@
-import { useEffect, useState } from "react"
-import { getCart,addToCart,addToWishList, addQuantityInCart, removeQuantityInCart } from "../../Services/ProductService"
-import axios from "axios"
-
+import { useProduct } from "../../context/ProductContext";
+import { CartCard } from "./component/CartCard";
+import { PriceCard } from "./component/PriceCard";
+import "./CartPage.css"
 export const CartPage = () => {
-    const [cart,setCart] = useState([])
-    console.log(cart);
-     useEffect(()=> {
-       axios
-       .get(`/api/user/cart`, {
-        headers : {
-            "authorization" : `${localStorage.getItem("token")}`
-        }
-       })
-       .then(res => setCart(res.data.cart))
-       .catch(err=> console.error(err))
-    },[])
+    const { productState, productDispatch } = useProduct();
+    const { wishlist , cart } = productState;
+    const isCartHasItem = cart.length > 0;
+    
     
     return(
-        <div>
-            <h1>Cart Page</h1>
-            {cart?.map((product) => {
-                return (
-                    <div style={{ width: '500px', margin: '15px auto' }} key={product._id}>
-                        <p>{product.rating}</p>
-                        <p>{product.category}</p>
-                        <p>{product.price}</p>
-                        <button onClick={()=>addToCart(product)}>{product.inCart ? 'remove from cart' : 'add to cart'}</button>
-                        <button onClick={()=>addToWishList(product)}>{product.inWishlist ? 'remove from wishlist' : 'add to wishlist'}</button>
-                        <button onClick={()=> addQuantityInCart(product)}>+</button>{product?.qty}<button onClick={()=> removeQuantityInCart(product)}>-</button>
-                        <hr />
-                    </div>
-                )
-            })}
+        <>
+      <div className="cart-container">
+        <div className="cart-main-container flex-center">
+          <h3>MY CART {isCartHasItem && `(${cart.length})`}</h3>
+          <div className="cart-manage">
+            <div className="cart-manage-item">
+              {isCartHasItem ? (
+                cart.map((product) => <CartCard key={product._id} product={product} />)
+              ) : (
+                <h1 className="text-center"> Your Cart Is Empty ! ☹️</h1>
+              )}
+            </div>
+            {isCartHasItem && <PriceCard 
+            // setCouponModal={setCouponModal}
+             />}
+          </div>
+          {/* {couponModal && <CouponModal setCouponModal={setCouponModal} />} */}
         </div>
+      </div>
+    </>
     )
 }

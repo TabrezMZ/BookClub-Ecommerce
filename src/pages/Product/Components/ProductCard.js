@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
-import { addToCart, addToWishList } from "../../../Services/ProductService";
+import {addToCart} from '../../../Services/CartService'
+import {addToWishList, removeFromWishlist} from '../../../Services/WishlistService'
 import { useProduct } from "../../../context/ProductContext";
 import "../Product.css";
 import { useNavigate } from "react-router-dom";
@@ -7,7 +7,9 @@ import { useNavigate } from "react-router-dom";
 export const ProductCard = ({product}) => {
     const navigate = useNavigate();
     const { productState, productDispatch } = useProduct()
-    const { initialProducts, selectRating, selectPrice, categoryType, sorttype,searchFilter } = productState
+    const { wishlist , cart } = productState;
+    // console.log(cart);
+    // console.log(wishlist);
     const {
         _id: id,
         img,
@@ -17,14 +19,18 @@ export const ProductCard = ({product}) => {
         originalPrice,
         isBestSeller,
         rating,
-        percentageOff,
       } = product;
 
-      const addToCartProduct = (item) => {
-        addToCart(item, productDispatch)
+      const inWishlist = wishlist.find((item)=> item.id === product.id)
+      const inCart = cart.find((item)=> item.id === product.id)
+
+      const addToCartProduct = () => {
+         !inCart ? 
+        addToCart(product, productDispatch) : navigate('/cart')
     }
-    const addToWishListProduct = (item) => {
-        addToWishList(item, productDispatch)
+    const addToWishListProduct = () => {
+       !inWishlist ?
+        addToWishList(product, productDispatch) : removeFromWishlist(product, productDispatch)
     }
 
     return(
@@ -38,10 +44,9 @@ export const ProductCard = ({product}) => {
       {isBestSeller && <span className="card-badge">Best Seller</span>}
       <span
         role="button"
-        // className={`wishlist-icon ${isInWishlist ? `wishlist-toggle` : ``}`}
-        className='wishlist-icon'
+        className={`wishlist-icon ${inWishlist ? `wishlist-toggle` : ``}`}
         onClick={() => addToWishListProduct()}
-        disabled={true}
+        // disabled={true}
       >
         <i className="fa fa-heart" aria-hidden="true"></i>
       </span>
@@ -61,7 +66,7 @@ export const ProductCard = ({product}) => {
         <div className="price">
           <p className="disc-price">₹{price}</p>
           <p className="actual-price">₹{originalPrice}</p>
-          <p className="price-percentage">({percentageOff}% OFF)</p>
+          <p className="price-percentage">({Math.round(100 - ((price / originalPrice)  * 100))}% OFF)</p>
         </div>
       </div>
       <button
@@ -70,7 +75,7 @@ export const ProductCard = ({product}) => {
         // disabled={btnDisabled}
       >
         <i className="fa fa-shopping-cart"></i>
-         {/* {isInCart ? "Go to Cart" : "Add to Cart"} */}
+         {inCart ? "Go to Cart" : "Add to Cart"}
       </button>
     </div>
     )

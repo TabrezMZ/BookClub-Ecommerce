@@ -31,7 +31,7 @@ export const Home = () => {
             <div className="home-page-text">
               <div className="main-text">
                 <h4>
-                  Welcome to <span className="title">Pustaka</span>,
+                  Welcome to <span className="title">BookClub</span>,
                 </h4>
                 <div>
                   <h1 className="main-text-title">For All Your</h1>

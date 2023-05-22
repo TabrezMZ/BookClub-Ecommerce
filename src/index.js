@@ -4,10 +4,11 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import { ProductContextProvider,useProduct } from './context/ProductContext'
+import { ProductContextProvider, useProduct } from './context/ProductContext'
+
 // Call make Server
 
-export {useProduct}
+export { useProduct }
 makeServer();
 
 ReactDOM.render(

@@ -5,6 +5,8 @@ export const productInitialState = {
     sorttype: '',
     selectRating: '',
     searchFilter: '',
+    cart: [],
+    wishlist: []
 }
 
 export const productsReducer = (state, action) => {
@@ -37,22 +39,26 @@ export const productsReducer = (state, action) => {
             return {
                 ...state, searchFilter: action.payload
             }
-        case 'ADD_TO_WISHLIST_PRODUCT' : 
-        return{
-            ...state, initialProducts : state.initialProducts.map((product)=> product._id === action.payload ? {...product, inWishlist : true}: product)
-        }
-        case 'REMOVE_FROM_WISHLIST_PRODUCT' : 
-        return{
-            ...state, initialProducts : state.initialProducts.map((product)=> product._id === action.payload ? {...product, inWishlist : false}: product)
-        }
-        case 'ADD_TO_CART_PRODUCT' : 
-        return{
-            ...state, initialProducts : state.initialProducts.map((product)=> product._id === action.payload ? {...product, inCart : true}: product)
-        }
-        case 'REMOVE_FROM_CART_PRODUCT' : 
-        return{
-            ...state, initialProducts : state.initialProducts.map((product)=> product._id === action.payload ? {...product, inCart : false}: product)
-        }
+        case 'ADD_TO_WISHLIST_PRODUCT':
+            return {
+                ...state,
+                wishlist: [...action.payload]
+            }
+        case 'REMOVE_FROM_WISHLIST_PRODUCT':
+            return {
+                ...state,
+                wishlist: [...action.payload]
+            }
+        case 'ADD_TO_CART_PRODUCT':
+            return {
+                ...state,
+                cart: [...action.payload]
+            }
+        case 'REMOVE_FROM_CART_PRODUCT':
+            return {
+                ...state,
+                cart: [...action.payload]
+            }
         case 'CLEAR_FILTER':
             return {
                 ...state,
