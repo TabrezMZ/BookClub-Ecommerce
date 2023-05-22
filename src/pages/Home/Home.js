@@ -37,7 +37,7 @@ export const Home = () => {
                   <h1 className="main-text-title">For All Your</h1>
                   <h1 className="main-text-title">Reading Needs</h1>
                 </div>
-                <Link to="/product">
+                <Link to="/products">
                   <button className="link-btn shop-now-btn">SHOP NOW</button>
                 </Link>
               </div>
