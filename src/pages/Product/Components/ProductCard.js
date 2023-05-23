@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 export const ProductCard = ({product}) => {
     const navigate = useNavigate();
+    const token = localStorage.getItem('token')
     const { productState, productDispatch } = useProduct()
     const { wishlist , cart } = productState;
     // console.log(cart);
@@ -25,12 +26,14 @@ export const ProductCard = ({product}) => {
       const inCart = cart.find((item)=> item.id === product.id)
 
       const addToCartProduct = () => {
+        token ? 
          !inCart ? 
-        addToCart(product, productDispatch) : navigate('/cart')
+        addToCart(product, productDispatch) : navigate('/cart') : navigate('/login')
     }
     const addToWishListProduct = () => {
+      token ?
        !inWishlist ?
-        addToWishList(product, productDispatch) : removeFromWishlist(product, productDispatch)
+        addToWishList(product, productDispatch) : removeFromWishlist(product, productDispatch) : navigate('/login')
     }
 
     return(

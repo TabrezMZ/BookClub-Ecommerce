@@ -12,7 +12,6 @@ export const PriceCard = () => {
           <p>
             <i className="fa fa-tag" aria-hidden="true"></i> Have A Coupon ?
           </p>
-          <input ></input>
           {/* <div className="btn outlined-default coupon-btn" onClick={() => setCouponModal(true)}>
             Apply
           </div> */}
