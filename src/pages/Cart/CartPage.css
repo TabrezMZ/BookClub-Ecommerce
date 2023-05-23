@@ -7,6 +7,9 @@
 }
 
 .cart-main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding-top: 3rem;
     flex-direction: column;
     gap: 4rem;
@@ -104,6 +107,8 @@
 .checkout-btn {
     padding: 0
 }
+
+
 
 
 @media screen and (max-width:500px) {

@@ -11,14 +11,14 @@ export const CartPage = () => {
     return(
         <>
       <div className="cart-container">
-        <div className="cart-main-container flex-center">
+        <div className="cart-main-container">
           <h3>MY CART {isCartHasItem && `(${cart.length})`}</h3>
           <div className="cart-manage">
             <div className="cart-manage-item">
               {isCartHasItem ? (
                 cart.map((product) => <CartCard key={product._id} product={product} />)
               ) : (
-                <h1 className="text-center"> Your Cart Is Empty ! ☹️</h1>
+                <h1> Your Cart Is Empty ! ☹️</h1>
               )}
             </div>
             {isCartHasItem && <PriceCard 
