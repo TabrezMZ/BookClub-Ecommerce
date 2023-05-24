@@ -6,7 +6,22 @@ export const productInitialState = {
     selectRating: '',
     searchFilter: '',
     cart: [],
-    wishlist: []
+    wishlist: [],
+    addressOfOrder: {},
+    address: [{
+        name: "Admin",
+        street: "33 , MG Road",
+        city: "Pune",
+        state: "Maharashtra",
+        country: "India",
+        zipCode: "411046",
+        mobile: "12345678",
+    }],
+    priceDetails: {
+        discount: 0,
+        totalAmount: 0,
+        totalDiscount: 0,
+    }
 }
 
 export const productsReducer = (state, action) => {
@@ -57,7 +72,17 @@ export const productsReducer = (state, action) => {
         case 'REMOVE_FROM_CART_PRODUCT':
             return {
                 ...state,
-                cart: [...action.payload]
+                address: [...action.payload]
+            }
+        case 'ADD_ADDRESS':
+            return {
+                ...state,
+                address: [...action.payload]
+            }
+        case 'SET_CHECKOUT_MODAL':
+            return {
+                ...state,
+                priceDetails: { ...state.priceDetails, ...action.payload }
             }
         case 'CLEAR_FILTER':
             return {

@@ -2,7 +2,7 @@ import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import logo from "./logo.png";
 import Mockman from "mockman-js";
-import { Home, Login, Product, SignUp ,ProductPage, CartPage, WishlistPage} from "./pages";
+import { Home, Login, Product, SignUp ,ProductPage, CartPage, WishlistPage, UserProfile, CheckoutOrder} from "./pages";
 import { NavBar } from "./component/NavBar/NavBar";
 import { RequireedAuth } from "./component/RequiredAuth/RequiredAuth";
 
@@ -18,6 +18,8 @@ function App() {
         <Route path="/signup" element={<SignUp/>} />
         <Route path="/cart" element={   <RequireedAuth><CartPage/></RequireedAuth>} />
         <Route path="/wishlist" element={ <RequireedAuth> <WishlistPage/></RequireedAuth>} />
+        <Route path="/profile" element={ <RequireedAuth> <UserProfile/></RequireedAuth>} />
+        <Route path="/ordercheckout" element={ <RequireedAuth> <CheckoutOrder/></RequireedAuth>} />
         <Route path="/product/:productId" element={<ProductPage/>} />
       </Routes>
     </div>

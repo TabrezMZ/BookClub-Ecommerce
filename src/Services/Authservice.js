@@ -5,6 +5,7 @@ export const LoginUser = async (userData) => {
         const response = await axios.post(`/api/auth/login`, userData)
         console.log(response.data)
         localStorage.setItem('token', response.data.encodedToken)
+        localStorage.setItem('userdata', response.data.foundUser)
     } catch (error) {
         console.error(error)
     }
@@ -14,6 +15,7 @@ export const SignUpUser = async (userData) => {
         const response = await axios.post(`/api/auth/signup`, userData)
         console.log(response.data)
         localStorage.setItem('token', response.data.encodedToken)
+        localStorage.setItem('userdata', response.data.foundUser)
     } catch (error) {
         console.error(error)
     }
@@ -27,8 +29,8 @@ export const TestUserLogin = async () => {
     }
     try {
         const response = await axios.post(`/api/auth/login`, userData)
-        console.log(response.data)
         localStorage.setItem('token', response.data.encodedToken)
+        localStorage.setItem('userdata', JSON.stringify(response.data.foundUser) )
     } catch (error) {
         console.error(error)
     }

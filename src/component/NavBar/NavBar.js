@@ -49,7 +49,7 @@ export const NavBar = () => {
                   </div>}
               </div>
             </li>
-            <li onClick={() => navigate("/user_profile")}>
+            <li onClick={() => navigate("/profile")}>
               <img
                 src="https://github.com/rutvikpumak/pustaka-ecom/blob/dev/images/logo.png?raw=true"
                 alt="login"

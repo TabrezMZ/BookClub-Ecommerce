@@ -1,21 +1,28 @@
+import { useNavigate } from "react-router-dom";
 import { useProduct } from "../../../context/ProductContext";
 
 export const PriceCard = () => {
+  const navigate = useNavigate()
     const { productState, productDispatch } = useProduct();
     const { wishlist , cart } = productState;
-    const price = cart.reduce((acc,curr)=>acc + (curr.price * curr.qty),0 )
+    const totalAmount = cart.reduce((acc,curr)=>acc + (curr.price * curr.qty),0 )
     const totalOriginalPrice =  cart.reduce((acc,curr)=> acc + (curr.originalPrice * curr.qty),0)
-    const discount = totalOriginalPrice - price;
+    const discount = totalOriginalPrice - totalAmount;
+
+    const checkoutHandler = () => {
+      productDispatch({type:"SET_CHECKOUT_MODAL",payload: {totalAmount , totalOriginalPrice , discount}})
+      navigate('/ordercheckout')
+    }
     return(
         <div className="price-details">
-        <ul className="coupon">
+        {/* <ul className="coupon">
           <p>
             <i className="fa fa-tag" aria-hidden="true"></i> Have A Coupon ?
           </p>
-          {/* <div className="btn outlined-default coupon-btn" onClick={() => setCouponModal(true)}>
+          <div className="btn outlined-default coupon-btn" onClick={() => setCouponModal(true)}>
             Apply
-          </div> */}
-        </ul>
+          </div>
+        </ul> */}
         <h4 className="text-center">PRICE DETAILS</h4>
   
         <div className="price-calculate">
@@ -56,12 +63,12 @@ export const PriceCard = () => {
         </div>
         <ul className="price-totalAmt">
           <h4>Total Amount</h4>
-          <h4>₹ {price}</h4>
+          <h4>₹ {totalAmount}</h4>
         </ul>
-        {/* <p className="save-msg">You will save ₹ {totalDiscount} on this order</p> */}
-        {/* <div className="primary-btn text-center" onClick={() => checkoutHandler()}>
+        <p className="save-msg">You will save ₹ {discount} on this order</p>
+        <div className="primary-btn text-center" onClick={() => checkoutHandler()}>
           <button className="link-btn checkout-btn">Checkout</button>
-        </div> */}
+        </div>
       </div>
     )
 }
