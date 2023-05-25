@@ -8,15 +8,8 @@ export const productInitialState = {
     cart: [],
     wishlist: [],
     addressOfOrder: {},
-    address: [{
-        name: "Admin",
-        street: "33 , MG Road",
-        city: "Pune",
-        state: "Maharashtra",
-        country: "India",
-        zipCode: "411046",
-        mobile: "12345678",
-    }],
+    address: [],
+    orderAddress : {},
     priceDetails: {
         discount: 0,
         totalAmount: 0,
@@ -77,7 +70,22 @@ export const productsReducer = (state, action) => {
         case 'ADD_ADDRESS':
             return {
                 ...state,
-                address: [...action.payload]
+                address: [ ...state.address,...action.payload]
+            }
+        case 'DELETE_ADDRESS':
+            return {
+                ...state,
+                address: state.address.filter((item)=> item.street !== action.payload)
+            }
+        case 'EDIT_ADDRESS':
+            return {
+                ...state,
+                address: state.address.map((item)=> item.street === action.payload.street ? {...item, ...action.payload} : item)
+            }
+        case 'ORDER_ADDRESS':
+            return {
+                ...state,
+                 orderAddress : action.payload
             }
         case 'SET_CHECKOUT_MODAL':
             return {
