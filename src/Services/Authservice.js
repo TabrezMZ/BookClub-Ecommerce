@@ -22,7 +22,7 @@ export const SignUpUser = async (userData) => {
 }
 
 
-export const TestUserLogin = async () => {
+export const TestUserLogin = async (toast) => {
     const userData = {
         email: "adarshbalika@gmail.com",
         password: "adarshbalika",
@@ -31,6 +31,7 @@ export const TestUserLogin = async () => {
         const response = await axios.post(`/api/auth/login`, userData)
         localStorage.setItem('token', response.data.encodedToken)
         localStorage.setItem('userdata', JSON.stringify(response.data.foundUser) )
+        toast.success('login succesfully')
     } catch (error) {
         console.error(error)
     }

@@ -2,6 +2,7 @@ import './Auth.css'
 import { Link } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { LoginUser, TestUserLogin } from '../../Services/Authservice';
+import toast, { Toaster } from 'react-hot-toast';
 
 
 export const Login = () => {
@@ -10,8 +11,14 @@ export const Login = () => {
         handleSubmit,
         formState: { errors },
       } = useForm();
+
+      const TestUserLoginON = () => {
+        TestUserLogin(toast)
+      }
+      
     return (
         <div className="contact-form__login">
+            <Toaster/>
             <form className="form__login" onSubmit={handleSubmit((data) =>LoginUser(data))}>
                 <h2 className="login">Login</h2>
                 {/* <label className="label__login">FirstName:</label>
@@ -28,7 +35,7 @@ export const Login = () => {
                 <button className="btn__login" type="submit">
                     Login
                 </button>
-                <button className="btn__login" type="button" onClick={TestUserLogin} >
+                <button className="btn__login" type="button" onClick={TestUserLoginON} >
                    Test User Login
                 </button>
                 <Link to='/signup' >Create New Account</Link>

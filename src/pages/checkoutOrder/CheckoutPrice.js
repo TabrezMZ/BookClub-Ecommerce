@@ -67,9 +67,6 @@ export const CheckoutPrice = ({setMsg}) => {
       const placeOrderHandler = () => {
         if (address.length === 0) {
           alert("Please Add Address");
-          setTimeout(() => {
-            navigate("addressform");
-          }, 1500);
         } else {
           !orderAddress.name ? alert('plaese select address') : displayRazorpay();
         }
