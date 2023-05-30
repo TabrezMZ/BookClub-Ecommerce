@@ -4,6 +4,6 @@ export const RequireedAuth = ({children}) => {
     const token = localStorage.getItem('token')
     const location = useLocation()
     return(
-        token ? children : <Navigate to={"../login"} state={{from : location}} />
+        token ? children : <Navigate to='/login' state={{from : location?.pathname}}  />
     )
 }

@@ -1,11 +1,14 @@
 import './Auth.css'
-import { Link } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { LoginUser, TestUserLogin } from '../../Services/Authservice';
 import toast, { Toaster } from 'react-hot-toast';
 
 
 export const Login = () => {
+    const token = localStorage.getItem('token')
+    const navigate = useNavigate()
+    const location = useLocation()
     const {
         register,
         handleSubmit,
@@ -13,13 +16,19 @@ export const Login = () => {
       } = useForm();
 
       const TestUserLoginON = () => {
-        TestUserLogin(toast)
+        TestUserLogin(toast,navigate,location)
+      }
+
+      if (token) {
+          setTimeout(() => {
+            navigate(location?.state?.from || "/products");
+        }, 500);
       }
       
     return (
         <div className="contact-form__login">
-            <Toaster/>
-            <form className="form__login" onSubmit={handleSubmit((data) =>LoginUser(data))}>
+           
+            <form className="form__login" onSubmit={handleSubmit((data) =>LoginUser(data,toast,navigate,location))}>
                 <h2 className="login">Login</h2>
                 {/* <label className="label__login">FirstName:</label>
                 <input className="input__login" type="text" {...register("FirstName", { required: true })} />

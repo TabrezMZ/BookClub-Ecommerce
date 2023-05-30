@@ -1,28 +1,35 @@
 import axios from "axios"
 
-export const LoginUser = async (userData) => {
+export const LoginUser = async (userData,toast,navigate,location) => {
     try {
         const response = await axios.post(`/api/auth/login`, userData)
         console.log(response.data)
         localStorage.setItem('token', response.data.encodedToken)
-        localStorage.setItem('userdata', response.data.foundUser)
+        localStorage.setItem('userdata', JSON.stringify(response.data.foundUser) )
+        toast.success('login succesfully')
+        // setTimeout(() => {
+        //     navigate(location?.state?.from)
+        // }, 1000);
     } catch (error) {
         console.error(error)
     }
 }
-export const SignUpUser = async (userData) => {
+export const SignUpUser = async (userData,toast,navigate,location) => {
+    debugger
     try {
         const response = await axios.post(`/api/auth/signup`, userData)
         console.log(response.data)
         localStorage.setItem('token', response.data.encodedToken)
-        localStorage.setItem('userdata', response.data.foundUser)
+        localStorage.setItem('userdata', JSON.stringify(response.data.createdUser) )
+        toast.success('SignUp succesfully')
     } catch (error) {
         console.error(error)
     }
 }
 
 
-export const TestUserLogin = async (toast) => {
+export const TestUserLogin = async (toast,navigate,location) => {
+    debugger
     const userData = {
         email: "adarshbalika@gmail.com",
         password: "adarshbalika",
@@ -32,6 +39,9 @@ export const TestUserLogin = async (toast) => {
         localStorage.setItem('token', response.data.encodedToken)
         localStorage.setItem('userdata', JSON.stringify(response.data.foundUser) )
         toast.success('login succesfully')
+        // setTimeout(() => {
+        //     navigate(location?.state?.from)
+        // }, 1000);
     } catch (error) {
         console.error(error)
     }
