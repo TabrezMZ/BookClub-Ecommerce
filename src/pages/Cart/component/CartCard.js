@@ -1,3 +1,4 @@
+import { toast } from "react-hot-toast";
 import { addQuantityInCart ,removeQuantityInCart, removeFromCart} from "../../../Services/CartService";
 import { addToWishList } from "../../../Services/WishlistService";
 import { useProduct } from "../../../context/ProductContext";
@@ -12,7 +13,7 @@ export const CartCard = ({product}) => {
 
       const addToWishListProduct = () => {
         !inWishlist ?
-         addToWishList(product, productDispatch) : navigate('/wishlist')
+         addToWishList(product, productDispatch,toast) : navigate('/wishlist')
      }
     return(
         <div key={product._id} className="card horizontal-container">
@@ -49,7 +50,7 @@ export const CartCard = ({product}) => {
           <button
             className="remove-btn"
             onClick={() => {
-              removeFromCart(product, productDispatch);
+              removeFromCart(product, productDispatch,toast);
             }}
           >
             REMOVE

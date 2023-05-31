@@ -3,6 +3,7 @@ import {addToWishList, removeFromWishlist } from "../../Services/WishlistService
 import { addToCart } from "../../Services/CartService";
 import { useNavigate } from "react-router-dom";
 import "./WishlistPage.css";
+import { toast } from "react-hot-toast";
 
 export const WishlistPage = () => {
     const navigate = useNavigate();
@@ -24,11 +25,11 @@ export const WishlistPage = () => {
                     const inCart = cart.find((item)=> item.id === product.id)
                     const addToCartProduct = () => {
                         !inCart ? 
-                       addToCart(product, productDispatch) : navigate('/cart')
+                       addToCart(product, productDispatch,toast) : navigate('/cart')
                    }
                    const removeFromWishlistProduct = () => {
                       !inWishlist ?
-                       addToWishList(product, productDispatch) : removeFromWishlist(product, productDispatch)
+                       addToWishList(product, productDispatch,toast) : removeFromWishlist(product, productDispatch,toast)
                    }
                     return(
                    <div className="wishlist-item">

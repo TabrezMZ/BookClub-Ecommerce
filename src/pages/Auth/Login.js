@@ -3,10 +3,12 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import { LoginUser, TestUserLogin } from '../../Services/Authservice';
 import toast, { Toaster } from 'react-hot-toast';
+import { useProduct } from '../../context/ProductContext';
 
 
 export const Login = () => {
     const token = localStorage.getItem('token')
+    const { setLoader} = useProduct()
     const navigate = useNavigate()
     const location = useLocation()
     const {
@@ -20,8 +22,10 @@ export const Login = () => {
       }
 
       if (token) {
+        setLoader(true);
           setTimeout(() => {
             navigate(location?.state?.from || "/products");
+            setLoader(false);
         }, 500);
       }
       

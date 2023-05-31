@@ -65,7 +65,7 @@ export const productsReducer = (state, action) => {
         case 'REMOVE_FROM_CART_PRODUCT':
             return {
                 ...state,
-                address: [...action.payload]
+                cart: [...action.payload]
             }
         case 'ADD_ADDRESS':
             return {
@@ -91,6 +91,13 @@ export const productsReducer = (state, action) => {
             return {
                 ...state,
                 priceDetails: { ...state.priceDetails, ...action.payload }
+            }
+        case 'LOGOUT_USER':
+            return {
+                ...state,
+               cart : [],
+               wishlist : [],
+               address : [],
             }
         case 'CLEAR_FILTER':
             return {

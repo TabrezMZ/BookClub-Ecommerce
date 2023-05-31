@@ -4,27 +4,31 @@ import { addToWishList, removeFromWishlist } from "../../Services/WishlistServic
 import { addToCart } from "../../Services/CartService"
 import './Product.css'
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast"
 
 export const ProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams()
-  const { productState: { initialProducts , cart, wishlist }, productDispatch } = useProduct()
+  const { productState: { initialProducts, cart, wishlist }, productDispatch } = useProduct()
+  const token = localStorage.getItem('token')
   // const [product , setProduct] = useState()
   // console.log(product);
   const product = initialProducts?.find((product) => product.id === productId)
-  
-  const inWishlist = wishlist.find((item)=> item.id === product.id)
-  const inCart = cart.find((item)=> item.id === product.id)
+
+  const inWishlist = wishlist.find((item) => item.id === product.id)
+  const inCart = cart.find((item) => item.id === product.id)
 
   const addToCartProduct = () => {
-    !inCart ? 
-   addToCart(product, productDispatch) : navigate('/cart')
-}
+    token ?
+      !inCart ?
+        addToCart(product, productDispatch, toast) : navigate('/cart') : navigate('/login')
+  }
 
   const addToWishListProduct = () => {
-    !inWishlist ?
-     addToWishList(product, productDispatch) :navigate('/wishlist')
- }
+    token ?
+      !inWishlist ?
+        addToWishList(product, productDispatch, toast) : removeFromWishlist(product, productDispatch, toast) : navigate('/login')
+  }
 
 
   return (

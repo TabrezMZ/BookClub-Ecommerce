@@ -4,9 +4,11 @@ import { useForm } from "react-hook-form";
 import { SignUpUser } from '../../Services/Authservice';
 import toast, { Toaster } from 'react-hot-toast';
 import { useState } from 'react';
+import { useProduct } from '../../context/ProductContext';
 
 export const SignUp = () => {
     const token = localStorage.getItem('token')
+    const {setLoader} = useProduct()
     const [show , setShow] = useState(false)
     const navigate = useNavigate()
     const location = useLocation()
@@ -18,8 +20,10 @@ export const SignUp = () => {
 
       
       if (token) {
-        setTimeout(() => {
-          navigate(location?.state?.from || "/products");
+        setLoader(true);
+          setTimeout(() => {
+            navigate(location?.state?.from || "/products");
+            setLoader(false);
         }, 500);
       }
       

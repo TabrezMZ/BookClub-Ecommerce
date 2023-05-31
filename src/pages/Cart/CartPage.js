@@ -5,6 +5,7 @@ import "./CartPage.css"
 export const CartPage = () => {
     const { productState, productDispatch } = useProduct();
     const { wishlist , cart } = productState;
+    console.log(cart);
     const isCartHasItem = cart.length > 0;
     
     

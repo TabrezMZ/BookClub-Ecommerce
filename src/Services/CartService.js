@@ -11,22 +11,22 @@ export const getCart = async () => {
         console.error(error)
     }
 }
-export const addToCart = async (productItem, productDispatch) => {
+export const addToCart = async (productItem, productDispatch,toast) => {
     try {
         const response = await axios.post(`/api/user/cart`,{product : productItem} , {
             headers : {
                 authorization : localStorage.getItem('token')
             }
         })
-        console.log(response.data.cart);
+        // console.log(response.data.cart);
         productDispatch({type : 'ADD_TO_CART_PRODUCT', payload :response.data.cart })
-        alert('product add in cart succesfully')
+        toast.success('product add in cart succesfully')
     } catch (error) {
         console.error(error)
     }
 }
 
-export const removeFromCart = async (productItem,productDispatch)=> {
+export const removeFromCart = async (productItem,productDispatch,toast)=> {
     try {
         const response = await axios.delete(`/api/user/cart/${productItem._id}`,{
             headers : {
@@ -35,7 +35,7 @@ export const removeFromCart = async (productItem,productDispatch)=> {
         })
         console.log(response.data.cart);
         productDispatch({type : 'REMOVE_FROM_CART_PRODUCT', payload :response.data.cart })
-        alert('product remove from cart succesfully')
+        toast.success('product remove from cart succesfully')
     } catch (error) {
         console.error(error);
     }

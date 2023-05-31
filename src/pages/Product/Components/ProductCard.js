@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast';
 import {addToCart} from '../../../Services/CartService'
 import {addToWishList, removeFromWishlist} from '../../../Services/WishlistService'
 import { useProduct } from "../../../context/ProductContext";
@@ -28,12 +29,12 @@ export const ProductCard = ({product}) => {
       const addToCartProduct = () => {
         token ? 
          !inCart ? 
-        addToCart(product, productDispatch) : navigate('/cart') : navigate('/login')
+        addToCart(product, productDispatch,toast) : navigate('/cart') : navigate('/login')
     }
     const addToWishListProduct = () => {
       token ?
        !inWishlist ?
-        addToWishList(product, productDispatch) : removeFromWishlist(product, productDispatch) : navigate('/login')
+        addToWishList(product, productDispatch,toast) : removeFromWishlist(product, productDispatch,toast) : navigate('/login')
     }
 
     return(

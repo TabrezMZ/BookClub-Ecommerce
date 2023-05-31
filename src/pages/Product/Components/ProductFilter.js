@@ -2,8 +2,9 @@ import { useProduct } from "../../../context/ProductContext"
 import "../Product.css";
 
 export const ProductFilter = () => {
-    const { productState, productDispatch } = useProduct()
-    const { initialProducts, selectRating, selectPrice, categoryType, sorttype, searchFilter } = productState
+    const { productState, productDispatch,drawer, setDrawer, } = useProduct()
+    const { initialProducts, selectRating, selectPrice, categoryType, sorttype, searchFilter } = productState;
+    console.log(drawer);
 
 
     const addcategory = (category, e) => {
@@ -16,12 +17,18 @@ export const ProductFilter = () => {
         }
     }
 
+    function getDrawerClass () {
+        return drawer ? "trans-on" : "trans-off"
+    }
+
     return (
-        <div className={`filter-container`}>
+        <div className={`filter-container ${getDrawerClass()}`}>
             <div className="filter-head">
                 <h4>Filters</h4>
                 <p
-                    onClick={() => productDispatch({ type: 'CLEAR_FILTER' })}
+                    onClick={() => {
+                        productDispatch({ type: 'CLEAR_FILTER' })
+                    }}
                     className="paragraph-md clr-flt-btn"
                 >
                     Clear
@@ -48,15 +55,15 @@ export const ProductFilter = () => {
                 </div>
             </div>
 
-        <div className="filter-category">
-        <h4>Category</h4>
-        <div className="flex-gap"></div>
-        </div>
+            <div className="filter-category">
+                <h4>Category</h4>
+                <div className="flex-gap"></div>
+            </div>
 
             <div className="filter-category">
                 <h4>Category</h4>
                 {['Self Help', 'Non Fiction', 'Fiction'].map((category, id) => <div className="flex-gap" key={id}>
-                    <label ><input  className="checkbox-input" checked={categoryType?.includes(category)} onChange={(e) => addcategory(category, e)} value={category} type="checkbox" /><span className="check-desc">{category}</span></label>
+                    <label ><input className="checkbox-input" checked={categoryType?.includes(category)} onChange={(e) => addcategory(category, e)} value={category} type="checkbox" /><span className="check-desc">{category}</span></label>
                 </div>)}
             </div>
 

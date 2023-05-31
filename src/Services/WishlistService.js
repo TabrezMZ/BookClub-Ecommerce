@@ -13,7 +13,7 @@ export const getwishlist = async () => {
     }
 }
 
-export const addToWishList = async (productItem, productDispatch) => {
+export const addToWishList = async (productItem, productDispatch,toast) => {
     try {
         const response = await axios.post(`/api/user/wishlist`,{product : productItem} , {
             headers : {
@@ -22,14 +22,14 @@ export const addToWishList = async (productItem, productDispatch) => {
         })
         console.log(response.data.wishlist);
         productDispatch({type : 'ADD_TO_WISHLIST_PRODUCT', payload :response.data.wishlist})
-        alert('product add in wishlist succesfully')
+        toast.success('product add in wishlist succesfully')
     } catch (error) {
         console.error(error)
     }
 }
 
 
-export const removeFromWishlist = async (productItem,productDispatch)=> {
+export const removeFromWishlist = async (productItem,productDispatch,toast)=> {
     try {
         const response = await axios.delete(`/api/user/wishlist/${productItem._id}`,{
             headers : {
@@ -38,7 +38,7 @@ export const removeFromWishlist = async (productItem,productDispatch)=> {
         })
         console.log(response.data.wishlist);
         productDispatch({type : 'REMOVE_FROM_WISHLIST_PRODUCT', payload :response.data.wishlist })
-        alert('product remove from wishlist succesfully')
+        toast.success('product remove from wishlist succesfully')
     } catch (error) {
         console.error(error);
     }

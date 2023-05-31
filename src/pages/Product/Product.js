@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useProduct } from "../../context/ProductContext"
 import { ProductFilter } from "./Components/ProductFilter"
 import { ProductCard } from "./Components/ProductCard"
 import "./Product.css";
 
 export const Product = () => {
-    const { productState, productDispatch } = useProduct()
+    const { productState, productDispatch,setLoader } = useProduct()
     const { initialProducts, selectRating, selectPrice, categoryType, sorttype,searchFilter } = productState
     // console.log(categoryType);
     // const [selectRating, setRating] = useState('')
@@ -33,6 +33,13 @@ export const Product = () => {
     //     setSortType('')
     //     setRating('')
     // }
+
+    useEffect(()=> {
+      setLoader(true);
+    setTimeout(() => {
+      setLoader(false);
+    }, 1000);
+    },[])
 
     return (
        

@@ -1,23 +1,34 @@
 import "./NavBar.css";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useProduct } from "../../context/ProductContext";
 import { useNavigate } from "react-router-dom";
 
 export const NavBar = () => {
-  const { productState, productDispatch } = useProduct();
+  const { productState, productDispatch, setLoader, drawer, setDrawer } = useProduct();
   const { wishlist , cart } = productState;
   const navigate = useNavigate();
+  const location = useLocation()
   const searchFilter = (e) => {
     productDispatch({ type: "SEARCH_FILTER", payload: e.target.value });
-    navigate("/products");
+    if(location.pathname==='/'){
+      navigate("/products");
+    }
   };
   return (
     <div className="nav-header">
       <ul className="navbar">
         <div className="navbar-main">
           <div className="navbar-left">
-            <Link to="/">BookClub</Link>
+          {window.location.href.includes("products") && (
+              <i
+                className="fa fa-bars drawer-hamberg-btn"
+                aria-hidden="true"
+                onClick={() => setDrawer(!drawer)}
+              />
+            )}
+            <Link to="/"><h2>BookClub</h2></Link>
           </div>
+          <Link to="/products"><h4>Shop Now</h4></Link>
           <div className="search-container">
             <i className="fa fa-search" aria-hidden="true"></i>
             <input
@@ -57,6 +68,17 @@ export const NavBar = () => {
               />
             </li>
           </ul>
+        </div>
+        <div className="search-container search-mob" >
+          <i className="fa fa-search" aria-hidden="true"></i>
+          <input
+            type="search"
+            name="search"
+            className="search-bar"
+            placeholder="Search for product"
+            id=""
+            onChange={(e) => searchFilter(e)}
+          />
         </div>
       </ul>
     </div>

@@ -7,9 +7,9 @@ export const LoginUser = async (userData,toast,navigate,location) => {
         localStorage.setItem('token', response.data.encodedToken)
         localStorage.setItem('userdata', JSON.stringify(response.data.foundUser) )
         toast.success('login succesfully')
-        // setTimeout(() => {
-        //     navigate(location?.state?.from)
-        // }, 1000);
+        setTimeout(() => {
+            navigate(location?.state?.from)
+        }, 1000);
     } catch (error) {
         console.error(error)
     }
@@ -39,9 +39,9 @@ export const TestUserLogin = async (toast,navigate,location) => {
         localStorage.setItem('token', response.data.encodedToken)
         localStorage.setItem('userdata', JSON.stringify(response.data.foundUser) )
         toast.success('login succesfully')
-        // setTimeout(() => {
-        //     navigate(location?.state?.from)
-        // }, 1000);
+        setTimeout(() => {
+            navigate(location?.state?.from)
+        }, 1000);
     } catch (error) {
         console.error(error)
     }
