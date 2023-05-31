@@ -9,7 +9,7 @@ import { toast } from "react-hot-toast"
 export const ProductPage = () => {
   const navigate = useNavigate();
   const { productId } = useParams()
-  const { productState: { initialProducts, cart, wishlist }, productDispatch } = useProduct()
+  const { productState: { initialProducts, cart, wishlist }, productDispatch,setLoader } = useProduct()
   const token = localStorage.getItem('token')
   // const [product , setProduct] = useState()
   // console.log(product);
