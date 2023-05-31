@@ -37,9 +37,12 @@ export const SignUp = () => {
                 <input required className="input__login" type="text" {...register("lastName", { required: true })}  />
                 <label className="label__login">Email:</label>
                 <input required className="input__login" type="email" {...register("email", { required: true })}  />
-                <label className="label__login">Password:</label>
+                <label className="label__login">Password:
+                <i className={`${show ? 'fa fa-eye-slash' : 'far fa-eye'}`} onClick={()=>setShow(!show)} ></i></label>
                 <input required className="input__login" type={show ? 'text' : 'password'} {...register("password", { required: true })} />
-                <i onClick={()=>setShow(!show)} >Eye</i>
+                <label className="label__login">Password:
+                <i className={`${show ? 'fa fa-eye-slash' : 'far fa-eye'}`} onClick={()=>setShow(!show)} ></i></label>
+                <input required className="input__login" type={show ? 'text' : 'password'} {...register("password", { required: true })} />
                 <label><input required type='checkbox' /> i accept terms & conditions</label>
                 <button className="btn__login" type="submit">
                     Create New Account

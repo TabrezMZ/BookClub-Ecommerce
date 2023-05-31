@@ -72,7 +72,7 @@ export const Home = () => {
         </div>
         <footer className="footer footer-mn">
           <section className="footer-mn-lt">
-            <h2>Pustaka</h2>
+            <h2>BookClub</h2>
             <p className=" hm-page-paragraph">
               Fill your house with stacks of books, in all the crannies and all the nooks.
             </p>
@@ -84,15 +84,15 @@ export const Home = () => {
             <ul>
               <li>Connect</li>
               <li>
-                <a href="https://github.com/rutvikpumak" target="_blank" className="github-logo">
+                <a href="https://github.com/tabrezMZ" target="_blank" className="github-logo">
                   GitHub
                 </a>
               </li>
-              <li>
+              {/* <li>
                 <a href="https://twitter.com/rutvikumak13" target="_blank" className="twitter">
                   Twitter
                 </a>
-              </li>
+              </li> */}
               <li>
                 <a href="https://linkedin.com/in/rutvikumak" target="_blank" className="linkedin">
                   LinkedIn

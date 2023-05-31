@@ -2,6 +2,7 @@ import "./NavBar.css";
 import { Link, useLocation } from "react-router-dom";
 import { useProduct } from "../../context/ProductContext";
 import { useNavigate } from "react-router-dom";
+import { useEffect } from "react";
 
 export const NavBar = () => {
   const { productState, productDispatch, setLoader, drawer, setDrawer } = useProduct();
@@ -14,6 +15,13 @@ export const NavBar = () => {
       navigate("/products");
     }
   };
+
+  useEffect(()=> {
+    setLoader(true)
+    setTimeout(() => {
+      setLoader(false)
+    }, 500);
+  },[])
   return (
     <div className="nav-header">
       <ul className="navbar">
