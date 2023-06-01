@@ -7,15 +7,15 @@ import './CheckoutOrder.css'
 export const CheckoutOrder = () => {
   const navigate = useNavigate()
   const [msg, setMsg] = useState(false);
-  const { productState, productDispatch, addressForm, setAddressForm, orderAddress } = useProduct();
-  const { address } = productState;
+  const { productState, productDispatch, addressForm, setAddressForm } = useProduct();
+  const { address ,orderAddress } = productState;
  
 
   const deleteAddress = (val) => {
     productDispatch({ type: "DELETE_ADDRESS", payload: val })
   }
   const editAddress = (val) => {
-    const selectAdd = address.find((item) => item.street === val)
+    const selectAdd = address.find((item) => item.id === val)
     setAddressForm(selectAdd);
     navigate('addressform')
   }
@@ -51,17 +51,19 @@ export const CheckoutOrder = () => {
               <div className="checkout-manage">
                 <div className="checkout-manage-item ">
                   {address &&
-                    address.map(({ name, street, city, state, country, zipCode, mobile }) => (
+                    address.map(({id , name, street, city, state, country, zipCode, mobile }) => (
                       <div key={name} className="address-checkout-container ">
                         <label className="select-input">
                           <input
                             type="radio"
                             name="radio"
                             className="radio-input-address"
+                            checked={id==orderAddress?.id}
                           onChange={() =>
                             productDispatch({
                               type: 'ORDER_ADDRESS',
                               payload: {
+                                id,
                                 name,
                                 street,
                                 city,
@@ -85,13 +87,13 @@ export const CheckoutOrder = () => {
                         <div className="address-btn">
                           <button
                             className="btn outlined-default address-edit"
-                            onClick={() => editAddress(street)}
+                            onClick={() => editAddress(id)}
                           >
                             Edit
                           </button>
                           <button
                             className="btn outlined-danger address-remove"
-                            onClick={() => deleteAddress(street)}
+                            onClick={() => deleteAddress(id)}
                           >
                             Remove
                           </button>

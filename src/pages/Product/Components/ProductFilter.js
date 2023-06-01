@@ -4,7 +4,7 @@ import "../Product.css";
 export const ProductFilter = () => {
     const { productState, productDispatch,drawer, setDrawer, } = useProduct()
     const { initialProducts, selectRating, selectPrice, categoryType, sorttype, searchFilter } = productState;
-    console.log(drawer);
+    // console.log(drawer);
 
 
     const addcategory = (category, e) => {

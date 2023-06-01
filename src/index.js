@@ -12,12 +12,12 @@ export { useProduct }
 makeServer();
 
 ReactDOM.render(
-  // <React.StrictMode>
+  <React.StrictMode>
     <Router>
       <ProductContextProvider>
         <App />
       </ProductContextProvider>
-    </Router>,
-  // </React.StrictMode>,
+    </Router>
+  </React.StrictMode>,
   document.getElementById("root")
 );

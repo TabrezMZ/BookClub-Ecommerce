@@ -2,10 +2,13 @@ import { useProduct } from "../../context/ProductContext";
 import { CartCard } from "./component/CartCard";
 import { PriceCard } from "./component/PriceCard";
 import "./CartPage.css"
+import { useState } from "react";
+import { CouponModal } from "./component/CouponModal";
 export const CartPage = () => {
     const { productState, productDispatch } = useProduct();
     const { wishlist , cart } = productState;
-    console.log(cart);
+    const [couponModal, setCouponModal] = useState(false);
+    // console.log(cart);
     const isCartHasItem = cart.length > 0;
     
     
@@ -23,10 +26,10 @@ export const CartPage = () => {
               )}
             </div>
             {isCartHasItem && <PriceCard 
-            // setCouponModal={setCouponModal}
+            setCouponModal={setCouponModal}
              />}
           </div>
-          {/* {couponModal && <CouponModal setCouponModal={setCouponModal} />} */}
+          {couponModal && <CouponModal setCouponModal={setCouponModal} />}
         </div>
       </div>
     </>

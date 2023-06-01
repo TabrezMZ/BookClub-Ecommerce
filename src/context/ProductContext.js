@@ -5,7 +5,6 @@ import { productInitialState, productsReducer } from "../reducer/ProductReducer"
 export const ProductContext = createContext()
 
 const formvalue = {
-    id : 1,
     name: '',
     street: '',
     city: '',
@@ -20,11 +19,12 @@ export const ProductContextProvider = ({ children }) => {
     const [addressForm, setAddressForm] = useState(formvalue)
     const [loader,setLoader] = useState(false)
     const [drawer , setDrawer] = useState(false)
+    const [couponValue, setCouponValue] = useState({ couponName: "", value: 0 });
     useEffect(() => {
         getProducts(productDispatch)
     }, [])
     return (
-        <ProductContext.Provider value={{ productState ,productDispatch,addressForm, setAddressForm,loader,setLoader,drawer , setDrawer}}>
+        <ProductContext.Provider value={{ productState ,productDispatch,addressForm, setAddressForm,loader,setLoader,drawer , setDrawer,couponValue, setCouponValue}}>
             {children}
         </ProductContext.Provider>
     )

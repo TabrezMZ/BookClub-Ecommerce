@@ -16,7 +16,10 @@ function App() {
 
       {loader && <Loader />}
       <NavBar />
-      <Toaster />
+      <Toaster
+        position="top-right"
+        reverseOrder={false}
+      />
       <Routes>
         <Route path="/testapi" element={<Mockman />} />
         <Route path="/" element={<Home />} />

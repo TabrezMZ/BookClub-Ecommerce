@@ -15,13 +15,15 @@ export const LoginUser = async (userData,toast,navigate,location) => {
     }
 }
 export const SignUpUser = async (userData,toast,navigate,location) => {
-    debugger
     try {
         const response = await axios.post(`/api/auth/signup`, userData)
         console.log(response.data)
         localStorage.setItem('token', response.data.encodedToken)
         localStorage.setItem('userdata', JSON.stringify(response.data.createdUser) )
         toast.success('SignUp succesfully')
+        setTimeout(() => {
+            navigate(location?.state?.from)
+        }, 500);
     } catch (error) {
         console.error(error)
     }

@@ -29,7 +29,13 @@ export const SignUp = () => {
       
     return (
         <div className="contact-form__login">
-            <form className="form__login" onSubmit={handleSubmit((data) =>SignUpUser(data,toast,navigate,location))}>
+            <form className="form__login" onSubmit={handleSubmit((data) =>{
+             if(data.password === data.confirmPassword){
+               SignUpUser(data,toast,navigate,location)
+             }else{
+              toast.error('please  check confirm password')
+             }
+              })}>
                 <h2 className="login">SignUp</h2>
                 <label className="label__login">FirstName:</label>
                 <input required className="input__login" type="text" {...register("firstName", { required: true })}  />
@@ -40,9 +46,9 @@ export const SignUp = () => {
                 <label className="label__login">Password:
                 <i className={`${show ? 'fa fa-eye-slash' : 'far fa-eye'}`} onClick={()=>setShow(!show)} ></i></label>
                 <input required className="input__login" type={show ? 'text' : 'password'} {...register("password", { required: true })} />
-                <label className="label__login">Password:
+                <label className="label__login">Confirm Password:
                 <i className={`${show ? 'fa fa-eye-slash' : 'far fa-eye'}`} onClick={()=>setShow(!show)} ></i></label>
-                <input required className="input__login" type={show ? 'text' : 'password'} {...register("password", { required: true })} />
+                <input required className="input__login" type={show ? 'text' : 'password'} {...register("confirmPassword", { required: true })} />
                 <label><input required type='checkbox' /> i accept terms & conditions</label>
                 <button className="btn__login" type="submit">
                     Create New Account

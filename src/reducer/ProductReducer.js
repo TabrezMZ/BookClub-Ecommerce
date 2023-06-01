@@ -14,6 +14,7 @@ export const productInitialState = {
         discount: 0,
         totalAmount: 0,
         totalDiscount: 0,
+        coupon : 0,
     }
 }
 
@@ -75,12 +76,14 @@ export const productsReducer = (state, action) => {
         case 'DELETE_ADDRESS':
             return {
                 ...state,
-                address: state.address.filter((item)=> item.street !== action.payload)
+                address: state.address.filter((item)=> item.id !== action.payload),
+                orderAddress : state.orderAddress.id == action.payload ? {} : state.orderAddress
             }
         case 'EDIT_ADDRESS':
             return {
                 ...state,
-                address: state.address.map((item)=> item.street === action.payload.street ? {...item, ...action.payload} : item)
+                address: state.address.map((item)=> item.id === action.payload.id ? {...item, ...action.payload} : item),
+                orderAddress : state.orderAddress.id == action.payload.id ? action.payload : state.orderAddress
             }
         case 'ORDER_ADDRESS':
             return {
@@ -90,7 +93,7 @@ export const productsReducer = (state, action) => {
         case 'SET_CHECKOUT_MODAL':
             return {
                 ...state,
-                priceDetails: { ...state.priceDetails, ...action.payload }
+                priceDetails: action.payload
             }
         case 'LOGOUT_USER':
             return {
