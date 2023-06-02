@@ -18,7 +18,6 @@ export const addToCart = async (productItem, productDispatch, toast) => {
                 authorization: localStorage.getItem('token')
             }
         })
-        // console.log(response.data.cart);
         productDispatch({ type: 'ADD_TO_CART_PRODUCT', payload: response.data.cart })
         toast.success('product add in cart succesfully')
     } catch (error) {
