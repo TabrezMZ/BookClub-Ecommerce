@@ -1,5 +1,5 @@
 <div align="center">
-  <img src="src/assets/logo.png" height="100" width="100" alt="logo"/>
+  <img src="src/assets/bookclub.jpg" height="100" width="100" alt="logo"/>
   
 # BookClub
   An Ecommerce website for Books 
@@ -9,7 +9,7 @@
 
 ```
 $ git clone https://github.com/TabrezMZ/my-ecommerce-app.git
-$ cd pustaka
+$ cd bookclub
 $ npm install
 $ npm start
 ```
