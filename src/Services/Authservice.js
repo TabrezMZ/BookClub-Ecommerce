@@ -1,11 +1,11 @@
 import axios from "axios"
 
-export const LoginUser = async (userData,toast,navigate,location) => {
+export const LoginUser = async (userData, toast, navigate, location) => {
     try {
         const response = await axios.post(`/api/auth/login`, userData)
         console.log(response.data)
         localStorage.setItem('token', response.data.encodedToken)
-        localStorage.setItem('userdata', JSON.stringify(response.data.foundUser) )
+        localStorage.setItem('userdata', JSON.stringify(response.data.foundUser))
         toast.success('login succesfully')
         setTimeout(() => {
             navigate(location?.state?.from)
@@ -14,12 +14,12 @@ export const LoginUser = async (userData,toast,navigate,location) => {
         console.error(error)
     }
 }
-export const SignUpUser = async (userData,toast,navigate,location) => {
+export const SignUpUser = async (userData, toast, navigate, location) => {
     try {
         const response = await axios.post(`/api/auth/signup`, userData)
         console.log(response.data)
         localStorage.setItem('token', response.data.encodedToken)
-        localStorage.setItem('userdata', JSON.stringify(response.data.createdUser) )
+        localStorage.setItem('userdata', JSON.stringify(response.data.createdUser))
         toast.success('SignUp succesfully')
         setTimeout(() => {
             navigate(location?.state?.from)
@@ -30,7 +30,7 @@ export const SignUpUser = async (userData,toast,navigate,location) => {
 }
 
 
-export const TestUserLogin = async (toast,navigate,location) => {
+export const TestUserLogin = async (toast, navigate, location) => {
     debugger
     const userData = {
         email: "adarshbalika@gmail.com",
@@ -39,7 +39,7 @@ export const TestUserLogin = async (toast,navigate,location) => {
     try {
         const response = await axios.post(`/api/auth/login`, userData)
         localStorage.setItem('token', response.data.encodedToken)
-        localStorage.setItem('userdata', JSON.stringify(response.data.foundUser) )
+        localStorage.setItem('userdata', JSON.stringify(response.data.foundUser))
         toast.success('login succesfully')
         setTimeout(() => {
             navigate(location?.state?.from)

@@ -2,22 +2,20 @@ import { useProduct } from "../../../context/ProductContext"
 import "../Product.css";
 
 export const ProductFilter = () => {
-    const { productState, productDispatch,drawer, setDrawer, } = useProduct()
+    const { productState, productDispatch, drawer, setDrawer, } = useProduct()
     const { initialProducts, selectRating, selectPrice, categoryType, sorttype, searchFilter } = productState;
     // console.log(drawer);
 
 
     const addcategory = (category, e) => {
         if (e.target.checked) {
-            // setCategory([...categoryTypee, category])
             productDispatch({ type: 'CATEGORY_FILTER_ADD', payload: category })
         } else {
-            // setCategory(categoryTypee.filter(cat => cat !== category))
             productDispatch({ type: 'CATEGORY_FILTER_REMOVE', payload: category })
         }
     }
 
-    function getDrawerClass () {
+    function getDrawerClass() {
         return drawer ? "trans-on" : "trans-off"
     }
 
@@ -92,7 +90,7 @@ export const ProductFilter = () => {
                     <div className="flex-gap" key={index}>
                         <label className="select-input"><input checked={sortby === sorttype} onChange={() => productDispatch({ type: 'SORT_FILTER', payload: sortby })} value={sortby} type="radio"
                             name="sort"
-                            className="radio-input" />{sortby}</label>
+                            className="radio-input" /><span className="check-desc">{sortby}</span></label>
                     </div>
                 ))}
             </div>

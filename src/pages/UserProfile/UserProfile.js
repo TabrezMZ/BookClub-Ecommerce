@@ -6,14 +6,14 @@ import { useProduct } from "../../context/ProductContext";
 
 export const UserProfile = () => {
     const navigate = useNavigate()
-    const { setLoader , productDispatch } = useProduct()
+    const { setLoader, productDispatch } = useProduct()
     const userData = localStorage.getItem('userdata')
     const user = JSON.parse(userData)
     const { firstName, lastName, email } = user;
 
 
     const logOutHandler = () => {
-        productDispatch({type : 'LOGOUT_USER'})
+        productDispatch({ type: 'LOGOUT_USER' })
         localStorage.removeItem("token");
         localStorage.removeItem("userdata");
         toast.success("Logout succesfully")

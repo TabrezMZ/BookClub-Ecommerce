@@ -1,34 +1,26 @@
-import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { useProduct } from "../../context/ProductContext"
 import { toast } from "react-hot-toast";
 
 export const AddressForm = () => {
-    const { productState, productDispatch ,addressForm, setAddressForm} = useProduct();
+    const { productState, productDispatch, addressForm, setAddressForm } = useProduct();
     const { address } = productState;
     console.log(addressForm);
     const navigate = useNavigate()
     const fillFormValue = (e, fieldname) => {
-        // setAddressForm((prev)=> {
-        //   return {
-        //     ...prev,
-        //     [fieldname] : e.target.value
-        //     }
-        // })
         setAddressForm((prev) => ({ ...prev, [fieldname]: e.target.value }))
     }
 
     const saveHandler = (e) => {
         e.preventDefault();
-        // console.log(addressForm);
-        const editAddload = address.find((item)=> item.id === addressForm.id)
+        const editAddload = address.find((item) => item.id === addressForm.id)
         console.log(editAddload);
-        if(editAddload!==undefined){
-            productDispatch({type : 'EDIT_ADDRESS', payload : addressForm })
+        if (editAddload !== undefined) {
+            productDispatch({ type: 'EDIT_ADDRESS', payload: addressForm })
             toast.success('address changed successfully')
         }
-        else{
-            productDispatch({ type: 'ADD_ADDRESS', payload: [{...addressForm , id : address.length == 0 ? 1 : address[address.length - 1].id + 1}] })
+        else {
+            productDispatch({ type: 'ADD_ADDRESS', payload: [{ ...addressForm, id: address.length == 0 ? 1 : address[address.length - 1].id + 1 }] })
             toast.success('address added successfully')
         }
         navigate('/ordercheckout')

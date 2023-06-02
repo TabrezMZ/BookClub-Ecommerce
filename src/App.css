@@ -11,13 +11,14 @@
   margin: 0;
 }
 
-body{
+body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   font-family: 'Rubik', sans-serif;
   background-color: var(--lynxWhite);
 }
+
 a {
   color: inherit;
   text-decoration: inherit;
@@ -27,6 +28,6 @@ li {
   list-style: none;
 }
 
-button:disabled{
-  background:var(--lightGrey)
+button:disabled {
+  background: var(--lightGrey)
 }

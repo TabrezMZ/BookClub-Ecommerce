@@ -37,19 +37,9 @@ export const CheckoutPrice = ({ setMsg }) => {
       key: "rzp_test_M7jr3sNuOwTIPE",
       amount: (totalAmount - coupon) * 100,
       currency: "INR",
-      name: "Pustaka",
+      name: "BookClub",
       description: "Thank you for shopping with us",
-      image: "https://github.com/rutvikpumak/pustaka-ecom/blob/dev/images/logo.png?raw=true",
       handler: function (response) {
-        // const orderData = {
-        //   products: [...cart],
-        //   amount: totalAmount,
-        //   paymentId: response.razorpay_payment_id,
-        //   delivery: orderAddress,
-        // };
-        // setOrder({ ...orderData });
-        // clearCart(dataDispatch, cart, token);
-        // dispatch({ type: ACTION_TYPE.RESET_PRICE });
         setMsg(true);
       },
       prefill: {
@@ -58,7 +48,7 @@ export const CheckoutPrice = ({ setMsg }) => {
         contact: "9876543210",
       },
       theme: {
-        color: "#007bb5",
+        color: "#4ade80",
       },
     };
     const paymentObject = new window.Razorpay(options);

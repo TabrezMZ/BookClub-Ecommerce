@@ -17,14 +17,14 @@ const formvalue = {
 export const ProductContextProvider = ({ children }) => {
     const [productState, productDispatch] = useReducer(productsReducer, productInitialState)
     const [addressForm, setAddressForm] = useState(formvalue)
-    const [loader,setLoader] = useState(false)
-    const [drawer , setDrawer] = useState(false)
+    const [loader, setLoader] = useState(false)
+    const [drawer, setDrawer] = useState(false)
     const [couponValue, setCouponValue] = useState({ couponName: "", value: 0 });
     useEffect(() => {
         getProducts(productDispatch)
     }, [])
     return (
-        <ProductContext.Provider value={{ productState ,productDispatch,addressForm, setAddressForm,loader,setLoader,drawer , setDrawer,couponValue, setCouponValue}}>
+        <ProductContext.Provider value={{ productState, productDispatch, addressForm, setAddressForm, loader, setLoader, drawer, setDrawer, couponValue, setCouponValue }}>
             {children}
         </ProductContext.Provider>
     )

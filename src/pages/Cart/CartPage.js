@@ -5,15 +5,14 @@ import "./CartPage.css"
 import { useState } from "react";
 import { CouponModal } from "./component/CouponModal";
 export const CartPage = () => {
-    const { productState, productDispatch } = useProduct();
-    const { wishlist , cart } = productState;
-    const [couponModal, setCouponModal] = useState(false);
-    // console.log(cart);
-    const isCartHasItem = cart.length > 0;
-    
-    
-    return(
-        <>
+  const { productState, productDispatch } = useProduct();
+  const { wishlist, cart } = productState;
+  const [couponModal, setCouponModal] = useState(false);
+  const isCartHasItem = cart.length > 0;
+
+
+  return (
+    <>
       <div className="cart-container">
         <div className="cart-main-container">
           <h3>MY CART {isCartHasItem && `(${cart.length})`}</h3>
@@ -25,13 +24,13 @@ export const CartPage = () => {
                 <h1> Your Cart Is Empty ! ☹️</h1>
               )}
             </div>
-            {isCartHasItem && <PriceCard 
-            setCouponModal={setCouponModal}
-             />}
+            {isCartHasItem && <PriceCard
+              setCouponModal={setCouponModal}
+            />}
           </div>
           {couponModal && <CouponModal setCouponModal={setCouponModal} />}
         </div>
       </div>
     </>
-    )
+  )
 }

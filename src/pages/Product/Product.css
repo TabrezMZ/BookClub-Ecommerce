@@ -33,10 +33,11 @@
     margin-right: 0.5rem;
 }
 
-.price-percentage{
+.price-percentage {
     font-size: 1rem;
     align-self: center;
 }
+
 @media screen and (max-width: 950px) {
 
     .trans-on {
@@ -65,7 +66,7 @@
         margin-left: 0rem;
         padding: 3rem 1rem;
     }
-   
+
     .responsive-grid {
         grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
         grid-gap: 1rem;
@@ -253,6 +254,7 @@ input[type="range"] {
     .card:hover {
         box-shadow: rgba(90, 90, 90, 0.35) 0px 5px 15px;
     }
+
     .card-img {
         height: 10rem;
     }

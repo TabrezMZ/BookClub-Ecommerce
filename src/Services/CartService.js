@@ -2,8 +2,8 @@ import axios from "axios"
 export const getCart = async () => {
     try {
         const response = await axios.get(`/api/user/cart`, {
-            headers : {
-                authorization : localStorage.getItem('token')
+            headers: {
+                authorization: localStorage.getItem('token')
             }
         })
         console.log(response.data.cart);
@@ -11,70 +11,70 @@ export const getCart = async () => {
         console.error(error)
     }
 }
-export const addToCart = async (productItem, productDispatch,toast) => {
+export const addToCart = async (productItem, productDispatch, toast) => {
     try {
-        const response = await axios.post(`/api/user/cart`,{product : productItem} , {
-            headers : {
-                authorization : localStorage.getItem('token')
+        const response = await axios.post(`/api/user/cart`, { product: productItem }, {
+            headers: {
+                authorization: localStorage.getItem('token')
             }
         })
         // console.log(response.data.cart);
-        productDispatch({type : 'ADD_TO_CART_PRODUCT', payload :response.data.cart })
+        productDispatch({ type: 'ADD_TO_CART_PRODUCT', payload: response.data.cart })
         toast.success('product add in cart succesfully')
     } catch (error) {
         console.error(error)
     }
 }
 
-export const removeFromCart = async (productItem,productDispatch,toast)=> {
+export const removeFromCart = async (productItem, productDispatch, toast) => {
     try {
-        const response = await axios.delete(`/api/user/cart/${productItem._id}`,{
-            headers : {
-                authorization : localStorage.getItem('token')
+        const response = await axios.delete(`/api/user/cart/${productItem._id}`, {
+            headers: {
+                authorization: localStorage.getItem('token')
             }
         })
         console.log(response.data.cart);
-        productDispatch({type : 'REMOVE_FROM_CART_PRODUCT', payload :response.data.cart })
+        productDispatch({ type: 'REMOVE_FROM_CART_PRODUCT', payload: response.data.cart })
         toast.success('product remove from cart succesfully')
     } catch (error) {
         console.error(error);
     }
 }
 
-export const addQuantityInCart = async (productItem,productDispatch) => {
+export const addQuantityInCart = async (productItem, productDispatch) => {
     try {
         const response = await axios.post(`/api/user/cart/${productItem._id}`,
-        {
-            action : {
-                type : 'increment'
+            {
+                action: {
+                    type: 'increment'
+                },
             },
-        },
-        {
-            headers : {
-                authorization : localStorage.getItem('token')
-            }
-        })
+            {
+                headers: {
+                    authorization: localStorage.getItem('token')
+                }
+            })
         console.log(response.data.cart);
-        productDispatch({type : 'ADD_TO_CART_PRODUCT', payload :response.data.cart })
+        productDispatch({ type: 'ADD_TO_CART_PRODUCT', payload: response.data.cart })
     } catch (error) {
         console.error(error)
     }
 }
-export const removeQuantityInCart = async (productItem,productDispatch) => {
+export const removeQuantityInCart = async (productItem, productDispatch) => {
     try {
         const response = await axios.post(`/api/user/cart/${productItem._id}`,
-        {
-            action : {
-                type : 'decrement'
+            {
+                action: {
+                    type: 'decrement'
+                },
             },
-        },
-        {
-            headers : {
-                authorization : localStorage.getItem('token')
-            }
-        })
+            {
+                headers: {
+                    authorization: localStorage.getItem('token')
+                }
+            })
         console.log(response.data.cart);
-        productDispatch({type : 'ADD_TO_CART_PRODUCT', payload :response.data.cart })
+        productDispatch({ type: 'ADD_TO_CART_PRODUCT', payload: response.data.cart })
     } catch (error) {
         console.error(error)
     }

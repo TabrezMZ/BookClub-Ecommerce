@@ -1,54 +1,54 @@
 .contact-form__login {
-    border: 1px solid grey;
-    border-radius: 5px;
-    margin: 25px auto;
-    max-width: 600px;
-  }
-  
-  .form__login {
-    display: flex;
-    flex-direction: column;
-    padding: 35px 70px 20px 70px;
-    align-items: center;
-    gap: 20px;
-  }
-  
-  .label__login {
-    align-self: flex-start;
-    margin-bottom: -15px;
-    font-weight: 600;
-    font-size: 18px;
-    margin-left: 57px;
-  }
-  
-  .input__login {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid gray;
-    font-size: 16px;
-    width: 75%;
-  }
-  
-  .btn__login {
-    width: 75%;
-    padding: 10px;
-    font-size: 18px;
-    color: white;
-    cursor: pointer;
-    background-color: rgba(0, 0, 255, 0.788);
-    border-radius: 5px;
-    border: none;
-  }
-  
-  .forget-link {
-    color: blue;
-    font-size: 18px;
-    font-weight: 600;
-    text-decoration: none;
-  }
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin: 25px auto;
+  max-width: 600px;
+}
 
-  .rmb {
-    display: flex;
-    gap: 70px;
-    justify-content: space-around;
-  }
+.form__login {
+  display: flex;
+  flex-direction: column;
+  padding: 35px 70px 20px 70px;
+  align-items: center;
+  gap: 20px;
+}
+
+.label__login {
+  align-self: flex-start;
+  margin-bottom: -15px;
+  font-weight: 600;
+  font-size: 18px;
+  margin-left: 57px;
+}
+
+.input__login {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid gray;
+  font-size: 16px;
+  width: 75%;
+}
+
+.btn__login {
+  width: 75%;
+  padding: 10px;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+  background-color: rgba(0, 0, 255, 0.788);
+  border-radius: 5px;
+  border: none;
+}
+
+.forget-link {
+  color: blue;
+  font-size: 18px;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.rmb {
+  display: flex;
+  gap: 70px;
+  justify-content: space-around;
+}

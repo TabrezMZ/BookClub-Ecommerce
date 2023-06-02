@@ -9,12 +9,12 @@ export const productInitialState = {
     wishlist: [],
     addressOfOrder: {},
     address: [],
-    orderAddress : {},
+    orderAddress: {},
     priceDetails: {
         discount: 0,
         totalAmount: 0,
         totalDiscount: 0,
-        coupon : 0,
+        coupon: 0,
     }
 }
 
@@ -71,24 +71,24 @@ export const productsReducer = (state, action) => {
         case 'ADD_ADDRESS':
             return {
                 ...state,
-                address: [ ...state.address,...action.payload]
+                address: [...state.address, ...action.payload]
             }
         case 'DELETE_ADDRESS':
             return {
                 ...state,
-                address: state.address.filter((item)=> item.id !== action.payload),
-                orderAddress : state.orderAddress.id == action.payload ? {} : state.orderAddress
+                address: state.address.filter((item) => item.id !== action.payload),
+                orderAddress: state.orderAddress.id == action.payload ? {} : state.orderAddress
             }
         case 'EDIT_ADDRESS':
             return {
                 ...state,
-                address: state.address.map((item)=> item.id === action.payload.id ? {...item, ...action.payload} : item),
-                orderAddress : state.orderAddress.id == action.payload.id ? action.payload : state.orderAddress
+                address: state.address.map((item) => item.id === action.payload.id ? { ...item, ...action.payload } : item),
+                orderAddress: state.orderAddress.id == action.payload.id ? action.payload : state.orderAddress
             }
         case 'ORDER_ADDRESS':
             return {
                 ...state,
-                 orderAddress : action.payload
+                orderAddress: action.payload
             }
         case 'SET_CHECKOUT_MODAL':
             return {
@@ -98,9 +98,10 @@ export const productsReducer = (state, action) => {
         case 'LOGOUT_USER':
             return {
                 ...state,
-               cart : [],
-               wishlist : [],
-               address : [],
+                cart: [],
+                wishlist: [],
+                address: [],
+                orderAddress : {}
             }
         case 'CLEAR_FILTER':
             return {

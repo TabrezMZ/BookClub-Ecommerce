@@ -7,7 +7,7 @@ export const CouponModal = ({ setCouponModal }) => {
     const { couponValue, setCouponValue } = useProduct()
     const [input, setInput] = useState(couponValue);
     const COUPONS = [
-        { couponName: "DIWALI_DHAMAKA", value: 50 },
+        { couponName: "SUMMER_SALE", value: 50 },
         { couponName: "NEW_USER", value: 10 },
     ];
     return (

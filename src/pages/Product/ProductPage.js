@@ -11,8 +11,6 @@ export const ProductPage = () => {
   const { productId } = useParams()
   const { productState: { initialProducts, cart, wishlist }, productDispatch,setLoader } = useProduct()
   const token = localStorage.getItem('token')
-  // const [product , setProduct] = useState()
-  // console.log(product);
   const product = initialProducts?.find((product) => product.id === productId)
 
   const inWishlist = wishlist.find((item) => item.id === product.id)
@@ -85,7 +83,6 @@ export const ProductPage = () => {
           <button
             className={`btn default`}
             onClick={() => addToCartProduct()}
-          // disabled={btnDisabled}
           >
             <i className="fa fa-shopping-cart" aria-hidden="true"></i>{" "}
             {inCart ? "Go to Cart" : "Add to Cart"}
@@ -94,7 +91,6 @@ export const ProductPage = () => {
           <button
             className="btn outlined-default  wishlist-btn"
             onClick={() => addToWishListProduct()}
-          // disabled={btnWishlistDisabled}
           >
             <i className="fa fa-heart-o" aria-hidden="true"></i>{" "}
             {inWishlist ? "Go to Wishlist" : "Add to Wishlist"}
