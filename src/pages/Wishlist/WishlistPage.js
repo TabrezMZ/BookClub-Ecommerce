@@ -25,7 +25,7 @@ export const WishlistPage = () => {
                 const inCart = cart.find((item) => item.id === product.id)
                 const addToCartProduct = () => {
                   !inCart ?
-                    addToCart(product, productDispatch, toast) : navigate('/cart')
+                    (addToCart(product, productDispatch, toast) && removeFromWishlist(product, productDispatch, toast)) : navigate('/cart')
                 }
                 const removeFromWishlistProduct = () => {
                   !inWishlist ?
@@ -43,7 +43,7 @@ export const WishlistPage = () => {
                             <p className="disc-price">₹{product.price}</p>
                             <p className="actual-price">₹{product.originalPrice}</p>
                             <p className="price-percentage">
-                              ({100 - ((100 * product?.price) / product?.originalPrice).toFixed(2)}% OFF)
+                            ({Math.round(100 - ((product.price / product.originalPrice) * 100))}% OFF)
                             </p>
                           </div>
                         </div>

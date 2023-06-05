@@ -12,7 +12,7 @@ export const CartCard = ({ product }) => {
 
   const addToWishListProduct = () => {
     !inWishlist ?
-      addToWishList(product, productDispatch, toast) : navigate('/wishlist')
+      (addToWishList(product, productDispatch, toast) && removeFromCart(product, productDispatch, toast)) : navigate('/wishlist')
   }
   return (
     <div key={product._id} className="card horizontal-container">
@@ -28,7 +28,7 @@ export const CartCard = ({ product }) => {
           <div className="price">
             <p className="disc-price">₹{product.price}</p>
             <p className="actual-price">₹{product.originalPrice}</p>
-            <p className="price-percentage">({100 - ((100 * product?.price) / product?.originalPrice).toFixed(2)}% OFF)</p>
+            <p className="price-percentage">({Math.round(100 - ((product.price / product.originalPrice) * 100))}% OFF)</p>
           </div>
           <div className="qty">
             <button

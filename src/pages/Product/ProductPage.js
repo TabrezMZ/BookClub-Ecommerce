@@ -56,7 +56,7 @@ export const ProductPage = () => {
           <div className="price">
             <p className="disc-price">₹{product?.price}</p>
             <p className="actual-price">₹{product?.originalPrice}</p>
-            <p className="price-percentage">{Math.round(100 - ((100 * product?.price) / product?.originalPrice))}% OFF</p>
+            <p className="price-percentage">{Math.round(100 - ((product?.price / product?.originalPrice) * 100))}% OFF</p>
           </div>
           <p className="paragraph-sm msg">
             <i className="fa fa-bolt" aria-hidden="true"></i> Hurry , Only Few Left !
