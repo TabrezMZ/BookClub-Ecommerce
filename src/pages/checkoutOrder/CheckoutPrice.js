@@ -1,10 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import { useProduct } from "../../context/ProductContext";
 import { toast } from "react-hot-toast";
+import { useState } from "react";
+import { removeFromCart } from "../../Services/CartService";
 
 
 export const CheckoutPrice = ({ setMsg }) => {
   const navigate = useNavigate()
+  const [input , setInput] = useState('ONLINE PAYMENT')
   const { productState, productDispatch, couponValue, setCouponValue } = useProduct();
   const userData = localStorage.getItem('userdata')
   const user = JSON.parse(userData)
@@ -55,15 +58,47 @@ export const CheckoutPrice = ({ setMsg }) => {
     paymentObject.open();
   };
 
+  const paymentfn = () => {
+    if(input === 'ONLINE PAYMENT'){
+      displayRazorpay()
+    }
+    else{
+      cart.forEach(product => {
+        removeFromCart(product, productDispatch, toast)
+      }); 
+      setMsg(true)
+    }
+  }
+
   const placeOrderHandler = () => {
     if (address.length === 0) {
       toast.error("Please Add Address");
     } else {
-      !orderAddress.name ? toast.error('plaese select address') : displayRazorpay();
+      !orderAddress.name ? toast.error('plaese select address') : paymentfn();
     }
   };
   return (
     <div className="checkout-details">
+      <div className="modal-main">
+        {['COD (cash on delivey)', 'ONLINE PAYMENT']?.map((item) => (
+          <div className="coupon-option" key={item}>
+            <label className="select-input">
+              <input
+                type="radio"
+                name="radiop"
+                className="radio-input"
+                onChange={() =>
+                  setInput(item)
+                }
+                checked={item === input}
+              />
+              <span className="text">
+                {item}
+              </span>
+            </label>
+          </div>
+        ))}
+      </div>
       <h4 className="text-center border-header">ORDER DETAILS</h4>
       <div>
         <li>
