@@ -3,10 +3,11 @@ import { addToCart } from '../../../Services/CartService'
 import { addToWishList, removeFromWishlist } from '../../../Services/WishlistService'
 import { useProduct } from "../../../context/ProductContext";
 import "../Product.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 export const ProductCard = ({ product }) => {
   const navigate = useNavigate();
+  const location = useLocation()
   const token = localStorage.getItem('token')
   const { productState, productDispatch } = useProduct()
   const { wishlist, cart } = productState;
@@ -27,12 +28,18 @@ export const ProductCard = ({ product }) => {
   const addToCartProduct = () => {
     token ?
       !inCart ?
-        addToCart(product, productDispatch, toast) : navigate('/cart') : navigate('/login')
+        addToCart(product, productDispatch, toast) : navigate('/cart') : navigate('/login',{
+          replace: true,
+          state: { from: location?.pathname},
+        })
   }
   const addToWishListProduct = () => {
     token ?
       !inWishlist ?
-        addToWishList(product, productDispatch, toast) : removeFromWishlist(product, productDispatch, toast) : navigate('/login')
+        addToWishList(product, productDispatch, toast) : removeFromWishlist(product, productDispatch, toast) : navigate('/login',{
+          replace: true,
+          state: { from: location?.pathname},
+        })
   }
 
   return (

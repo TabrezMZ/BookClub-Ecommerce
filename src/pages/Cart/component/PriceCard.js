@@ -4,7 +4,7 @@ import { useProduct } from "../../../context/ProductContext";
 export const PriceCard = ({ setCouponModal }) => {
   const navigate = useNavigate()
   const { productState, productDispatch, couponValue, setCouponValue } = useProduct();
-  const { cart } = productState;
+  const { cart,address } = productState;
   const totalOriginalPrice = cart.reduce((acc, curr) => acc + (curr.originalPrice * curr.qty), 0)
   const totalAmount = cart.reduce((acc, curr) => acc + (curr.price * curr.qty), 0)
   const coupon = (couponValue.value / 100) * (totalAmount)
@@ -12,6 +12,10 @@ export const PriceCard = ({ setCouponModal }) => {
 
   const checkoutHandler = () => {
     productDispatch({ type: "SET_CHECKOUT_MODAL", payload: { totalAmount, totalOriginalPrice, discount, coupon } })
+    productDispatch({
+      type:'ORDER_ADDRESS',
+      payload: address[0],
+    });
     navigate('/ordercheckout')
   }
   return (

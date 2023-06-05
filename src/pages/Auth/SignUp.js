@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { SignUpUser } from '../../Services/Authservice';
 import toast, { Toaster } from 'react-hot-toast';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useProduct } from '../../context/ProductContext';
 
 export const SignUp = () => {
@@ -19,13 +19,15 @@ export const SignUp = () => {
   } = useForm();
 
 
-  if (token) {
-    setLoader(true);
-    setTimeout(() => {
-      navigate(location?.state?.from || "/products");
-      setLoader(false);
-    }, 500);
-  }
+  useEffect(()=>{
+    if (token) {
+      setLoader(true);
+      setTimeout(() => {
+        navigate(location?.state?.from || "/products");
+        setLoader(false);
+      }, 500);
+    }
+  },[])
 
   return (
     <div className="contact-form__login">

@@ -8,7 +8,7 @@ import { removeFromCart } from "../../Services/CartService";
 export const CheckoutPrice = ({ setMsg }) => {
   const navigate = useNavigate()
   const [input , setInput] = useState('ONLINE PAYMENT')
-  const { productState, productDispatch, couponValue, setCouponValue } = useProduct();
+  const { productState, productDispatch, couponValue, setCouponValue,order, setOrder } = useProduct();
   const userData = localStorage.getItem('userdata')
   const user = JSON.parse(userData)
   const { firstName, lastName, email } = user;
@@ -28,6 +28,18 @@ export const CheckoutPrice = ({ setMsg }) => {
       document.body.appendChild(script);
     });
   };
+
+  function makeid(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    let counter = 0;
+    while (counter < length) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+      counter += 1;
+    }
+    return result;
+}
   const displayRazorpay = async () => {
     const res = await loadScript("https://checkout.razorpay.com/v1/checkout.js");
 
@@ -43,7 +55,17 @@ export const CheckoutPrice = ({ setMsg }) => {
       name: "BookClub",
       description: "Thank you for shopping with us",
       handler: function (response) {
-        setMsg(true);
+        cart.forEach(product => {
+          removeFromCart(product, productDispatch, toast)
+        }); 
+        setMsg(true)
+        const orderData = {
+          products: [...cart],
+          amount: totalAmount - coupon,
+          paymentId: response.razorpay_payment_id,
+          delivery: orderAddress,
+        };
+        setOrder((prev)=> [...prev, orderData])
       },
       prefill: {
         name: `${firstName} ${lastName}`,
@@ -67,6 +89,13 @@ export const CheckoutPrice = ({ setMsg }) => {
         removeFromCart(product, productDispatch, toast)
       }); 
       setMsg(true)
+      const orderData = {
+        products: [...cart],
+        amount: totalAmount - coupon,
+        paymentId: makeid(9),
+        delivery: orderAddress,
+      };
+      setOrder((prev)=> [...prev, orderData])
     }
   }
 
@@ -80,6 +109,7 @@ export const CheckoutPrice = ({ setMsg }) => {
   return (
     <div className="checkout-details">
       <div className="modal-main">
+      <h4 className="text-center border-header">PAYMENT TYPE</h4>
         {['COD (cash on delivey)', 'ONLINE PAYMENT']?.map((item) => (
           <div className="coupon-option" key={item}>
             <label className="select-input">

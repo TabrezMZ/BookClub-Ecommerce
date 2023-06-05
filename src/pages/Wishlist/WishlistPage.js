@@ -32,7 +32,7 @@ export const WishlistPage = () => {
                     addToWishList(product, productDispatch, toast) : removeFromWishlist(product, productDispatch, toast)
                 }
                 return (
-                  <div className="wishlist-item">
+                  <div className="wishlist-item" key={product.id}>
                     <img src={product.img} alt="" />
                     <div className="item-info">
                       <header>

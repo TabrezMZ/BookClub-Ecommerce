@@ -6,7 +6,6 @@ export const getCart = async () => {
                 authorization: localStorage.getItem('token')
             }
         })
-        console.log(response.data.cart);
     } catch (error) {
         console.error(error)
     }
@@ -32,7 +31,6 @@ export const removeFromCart = async (productItem, productDispatch, toast) => {
                 authorization: localStorage.getItem('token')
             }
         })
-        console.log(response.data.cart);
         productDispatch({ type: 'REMOVE_FROM_CART_PRODUCT', payload: response.data.cart })
         toast.success('product remove from cart succesfully')
     } catch (error) {
@@ -53,7 +51,6 @@ export const addQuantityInCart = async (productItem, productDispatch) => {
                     authorization: localStorage.getItem('token')
                 }
             })
-        console.log(response.data.cart);
         productDispatch({ type: 'ADD_TO_CART_PRODUCT', payload: response.data.cart })
     } catch (error) {
         console.error(error)
@@ -72,7 +69,6 @@ export const removeQuantityInCart = async (productItem, productDispatch) => {
                     authorization: localStorage.getItem('token')
                 }
             })
-        console.log(response.data.cart);
         productDispatch({ type: 'ADD_TO_CART_PRODUCT', payload: response.data.cart })
     } catch (error) {
         console.error(error)

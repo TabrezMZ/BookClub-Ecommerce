@@ -4,11 +4,12 @@ import { useForm } from "react-hook-form";
 import { LoginUser, TestUserLogin } from '../../Services/Authservice';
 import toast, { Toaster } from 'react-hot-toast';
 import { useProduct } from '../../context/ProductContext';
+import { useEffect } from 'react';
 
 
 export const Login = () => {
   const token = localStorage.getItem('token')
-  const { setLoader } = useProduct()
+  const { setLoader, productDispatch } = useProduct()
   const navigate = useNavigate()
   const location = useLocation()
   const {
@@ -18,21 +19,23 @@ export const Login = () => {
   } = useForm();
 
   const TestUserLoginON = () => {
-    TestUserLogin(toast, navigate, location)
+    TestUserLogin(toast, navigate, location,productDispatch)
   }
 
-  if (token) {
-    setLoader(true);
-    setTimeout(() => {
-      navigate(location?.state?.from || "/products");
-      setLoader(false);
-    }, 500);
-  }
+  useEffect(()=>{
+    if (token) {
+      setLoader(true);
+      setTimeout(() => {
+        navigate(location?.state?.from || "/products");
+        setLoader(false);
+      }, 500);
+    }
+  },[])
 
   return (
     <div className="contact-form__login">
 
-      <form className="form__login" onSubmit={handleSubmit((data) => LoginUser(data, toast, navigate, location))}>
+      <form className="form__login" onSubmit={handleSubmit((data) => LoginUser(data, toast, navigate, location, productDispatch))}>
         <h2 className="login">Login</h2>
         <label className="label__login">Email:</label>
         <input required className="input__login" type="email"  {...register("email", { required: true })} />

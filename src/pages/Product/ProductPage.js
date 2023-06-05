@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom"
+import { useLocation, useParams } from "react-router-dom"
 import { useProduct } from "../../context/ProductContext"
 import { addToWishList, removeFromWishlist } from "../../Services/WishlistService"
 import { addToCart } from "../../Services/CartService"
@@ -8,6 +8,7 @@ import { toast } from "react-hot-toast"
 
 export const ProductPage = () => {
   const navigate = useNavigate();
+  const location = useLocation()
   const { productId } = useParams()
   const { productState: { initialProducts, cart, wishlist }, productDispatch,setLoader } = useProduct()
   const token = localStorage.getItem('token')
@@ -19,13 +20,19 @@ export const ProductPage = () => {
   const addToCartProduct = () => {
     token ?
       !inCart ?
-        addToCart(product, productDispatch, toast) : navigate('/cart') : navigate('/login')
+        addToCart(product, productDispatch, toast) : navigate('/cart') : navigate('/login',{
+          replace: true,
+          state: { from: location?.pathname},
+        })
   }
 
   const addToWishListProduct = () => {
     token ?
       !inWishlist ?
-        addToWishList(product, productDispatch, toast) : removeFromWishlist(product, productDispatch, toast) : navigate('/login')
+        addToWishList(product, productDispatch, toast) : removeFromWishlist(product, productDispatch, toast) : navigate('/login',{
+          replace: true,
+          state: { from: location?.pathname},
+        })
   }
 
 

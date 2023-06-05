@@ -77,13 +77,13 @@ export const productsReducer = (state, action) => {
             return {
                 ...state,
                 address: state.address.filter((item) => item.id !== action.payload),
-                orderAddress: state.orderAddress.id == action.payload ? {} : state.orderAddress
+                orderAddress: state.orderAddress.id === action.payload ? {} : state.orderAddress
             }
         case 'EDIT_ADDRESS':
             return {
                 ...state,
                 address: state.address.map((item) => item.id === action.payload.id ? { ...item, ...action.payload } : item),
-                orderAddress: state.orderAddress.id == action.payload.id ? action.payload : state.orderAddress
+                orderAddress: state.orderAddress.id === action.payload.id ? action.payload : state.orderAddress
             }
         case 'ORDER_ADDRESS':
             return {

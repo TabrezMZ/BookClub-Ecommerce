@@ -3,7 +3,7 @@ import "./App.css";
 import logo from "./logo.png";
 import Mockman from "mockman-js";
 import toast, { Toaster } from 'react-hot-toast';
-import { Home, Login, Product, SignUp, ProductPage, CartPage, WishlistPage, UserProfile, CheckoutOrder, AddressForm, NoPagefound } from "./pages";
+import { Home, Login, Product, SignUp, ProductPage, CartPage, WishlistPage, UserProfile, CheckoutOrder, AddressForm, NoPagefound, OrderSummary } from "./pages";
 import { NavBar } from "./component/NavBar/NavBar";
 import { RequireedAuth } from "./component/RequiredAuth/RequiredAuth";
 import { Loader } from "./component/Loader/Loader";
@@ -17,7 +17,7 @@ function App() {
       {loader && <Loader />}
       <NavBar />
       <Toaster
-        position="top-right"
+        position="top-center"
         reverseOrder={false}
       />
       <Routes>
@@ -31,6 +31,7 @@ function App() {
         <Route path="/profile" element={<RequireedAuth> <UserProfile /></RequireedAuth>} />
         <Route path="/ordercheckout" element={<RequireedAuth> <CheckoutOrder /></RequireedAuth>} />
         <Route path="/ordercheckout/addressform" element={<RequireedAuth> <AddressForm /></RequireedAuth>} />
+        <Route path="/profile/order-summary" element={<RequireedAuth> <OrderSummary /></RequireedAuth>} />
         <Route path="/product/:productId" element={<ProductPage />} />
         <Route path="*" element={<NoPagefound />} />
       </Routes>

@@ -20,11 +20,12 @@ export const ProductContextProvider = ({ children }) => {
     const [loader, setLoader] = useState(false)
     const [drawer, setDrawer] = useState(false)
     const [couponValue, setCouponValue] = useState({ couponName: "", value: 0 });
+    const [orders, setOrder] = useState([])
     useEffect(() => {
         getProducts(productDispatch)
     }, [])
     return (
-        <ProductContext.Provider value={{ productState, productDispatch, addressForm, setAddressForm, loader, setLoader, drawer, setDrawer, couponValue, setCouponValue }}>
+        <ProductContext.Provider value={{ productState, productDispatch, addressForm, setAddressForm, loader, setLoader, drawer, setDrawer, couponValue, setCouponValue , orders, setOrder }}>
             {children}
         </ProductContext.Provider>
     )

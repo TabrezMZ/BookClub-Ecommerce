@@ -7,7 +7,6 @@ export const getwishlist = async () => {
                 authorization: localStorage.getItem('token')
             }
         })
-        console.log(response.data.cart);
     } catch (error) {
         console.error(error)
     }
@@ -20,7 +19,6 @@ export const addToWishList = async (productItem, productDispatch, toast) => {
                 authorization: localStorage.getItem('token')
             }
         })
-        console.log(response.data.wishlist);
         productDispatch({ type: 'ADD_TO_WISHLIST_PRODUCT', payload: response.data.wishlist })
         toast.success('product add in wishlist succesfully')
     } catch (error) {
@@ -36,7 +34,6 @@ export const removeFromWishlist = async (productItem, productDispatch, toast) =>
                 authorization: localStorage.getItem('token')
             }
         })
-        console.log(response.data.wishlist);
         productDispatch({ type: 'REMOVE_FROM_WISHLIST_PRODUCT', payload: response.data.wishlist })
         toast.success('product remove from wishlist succesfully')
     } catch (error) {

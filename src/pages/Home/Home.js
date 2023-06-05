@@ -17,7 +17,6 @@ export const Home = () => {
   }, [])
 
   const categoriesHandlre = (categoryName) => {
-    console.log(categoryName)
     productDispatch({ type: 'CATEGORY_FILTER_ADD', payload: categoryName })
     navigate("/products")
   }

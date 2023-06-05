@@ -1,11 +1,12 @@
-import { useNavigate } from "react-router-dom"
-import { useProduct } from "../../context/ProductContext"
 import { toast } from "react-hot-toast";
+import { useProduct } from "../../../context/ProductContext";
 
-export const AddressForm = () => {
+export const AddressForm = ({
+  formDisplay,
+  setFormDisplay,
+}) => {
     const { productState, productDispatch, addressForm, setAddressForm } = useProduct();
     const { address } = productState;
-    const navigate = useNavigate()
     const fillFormValue = (e, fieldname) => {
         setAddressForm((prev) => ({ ...prev, [fieldname]: e.target.value }))
     }
@@ -18,14 +19,14 @@ export const AddressForm = () => {
             toast.success('address changed successfully')
         }
         else {
-            productDispatch({ type: 'ADD_ADDRESS', payload: [{ ...addressForm, id: address.length === 0 ? 1 : address[address.length - 1].id + 1 }] })
+            productDispatch({ type: 'ADD_ADDRESS', payload: [{ ...addressForm, id: address.length == 0 ? 1 : address[address.length - 1].id + 1 }] })
             toast.success('address added successfully')
         }
-        navigate('/ordercheckout')
+        setFormDisplay(false);
     }
     const cancelForm = (e) => {
         e.preventDefault();
-        navigate('/ordercheckout')
+        setFormDisplay(false);
     }
     const fillFormValueWithDummy = (e) => {
         e.preventDefault();
@@ -42,7 +43,9 @@ export const AddressForm = () => {
     return (
         <>
             <div
-                className={`address-form-container flex-center`}
+                className={`address-form-container flex-center ${
+                    !formDisplay ? "displayNone" : "displayFlex"
+                  }`}
             >
                 <form className="address-form"
                     onSubmit={(e) => saveHandler(e)}
