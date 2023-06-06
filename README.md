@@ -36,10 +36,9 @@ $ npm start
 - React JS
 - React Context API + useReducer
 - React Router v6
-- Vanilla CSS integrated with BoostMat UI Component Library
+- Vanilla CSS integrated
 - Razorpay payment gateway
 
 ## **Demo -**
-<!-- ![ezgif com-gif-maker](https://user-images.githubusercontent.com/58260342/161412291-aec62d98-98bd-4902-8109-1069406702b4.gif) -->
-
+[bookclubb_compressed.webm](https://github.com/TabrezMZ/my-ecommerce-app/assets/116564258/c72e80fd-0106-464c-abd3-ebdb51a08c3a)
 
