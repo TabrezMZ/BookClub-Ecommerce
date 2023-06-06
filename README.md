@@ -8,7 +8,7 @@
 ## **How to install and run locally ?**
 
 ```
-$ git clone https://github.com/TabrezMZ/my-ecommerce-app.git
+$ git clone https://github.com/TabrezMZ/BookClub-Ecommerce.git
 $ cd bookclub
 $ npm install
 $ npm start
