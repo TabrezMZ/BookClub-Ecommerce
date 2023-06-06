@@ -21,8 +21,8 @@ export const SignUpUser = async (userData, toast, navigate, location) => {
         localStorage.setItem('token', response.data.encodedToken)
         localStorage.setItem('userdata', JSON.stringify(response.data.createdUser))
         toast.success('SignUp succesfully')
-        setTimeout(() => {
-            navigate(location?.state?.from)
+         setTimeout(() => {
+            navigate('/')
         }, 500);
     } catch (error) {
         console.error(error)
