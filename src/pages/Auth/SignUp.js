@@ -2,7 +2,7 @@ import './Auth.css'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useForm } from "react-hook-form";
 import { SignUpUser } from '../../Services/Authservice';
-import toast, { Toaster } from 'react-hot-toast';
+import { toast } from "react-toastify";
 import { useEffect, useState } from 'react';
 import { useProduct } from '../../context/ProductContext';
 

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useProduct } from "../../context/ProductContext";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useState } from "react";
 import { removeFromCart } from "../../Services/CartService";
 
@@ -63,6 +63,7 @@ export const CheckoutPrice = ({ setMsg }) => {
           products: [...cart],
           amount: totalAmount - coupon,
           paymentId: response.razorpay_payment_id,
+          orderId: makeid(9),
           delivery: orderAddress,
         };
         setOrder((prev)=> [...prev, orderData])
@@ -92,7 +93,7 @@ export const CheckoutPrice = ({ setMsg }) => {
       const orderData = {
         products: [...cart],
         amount: totalAmount - coupon,
-        paymentId: makeid(9),
+        orderId: makeid(9),
         delivery: orderAddress,
       };
       setOrder((prev)=> [...prev, orderData])
@@ -102,8 +103,11 @@ export const CheckoutPrice = ({ setMsg }) => {
   const placeOrderHandler = () => {
     if (address.length === 0) {
       toast.error("Please Add Address");
+      setTimeout(() => {
+        navigate('addressform')
+      }, 500);
     } else {
-      !orderAddress.name ? toast.error('plaese select address') : paymentfn();
+      !orderAddress?.name ? toast.error('plaese select address') : paymentfn();
     }
   };
   return (
@@ -166,7 +170,7 @@ export const CheckoutPrice = ({ setMsg }) => {
           <ul>
             <p>Coupon Discount</p>
             <p>
-              {coupon !== 0 && "-"}₹ {coupon}
+              {coupon !== 0 && "-"}₹ {coupon.toFixed(2)}
             </p>
           </ul>
           {coupon !== 0 && (

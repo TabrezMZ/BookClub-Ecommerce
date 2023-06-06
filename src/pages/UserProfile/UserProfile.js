@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import './UserProfile.css'
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import { useProduct } from "../../context/ProductContext";
 import { AddressForm } from "./component/AddressForm";
 
@@ -18,6 +18,7 @@ export const UserProfile = () => {
 
 
   const deleteAddress = (val) => {
+    toast.error('Address Deleted')
     productDispatch({ type: "DELETE_ADDRESS", payload: val })
   }
   const editAddress = (val) => {

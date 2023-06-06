@@ -1,4 +1,5 @@
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
+
 import { useProduct } from "../../../context/ProductContext";
 
 export const AddressForm = ({

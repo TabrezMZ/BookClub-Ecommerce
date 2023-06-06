@@ -14,15 +14,18 @@ export function OrderSummary() {
                     <h3>Order Summary</h3>
                     {
                         orders.map((order) => {
-                            const  { amount, paymentId, delivery, products } = order;
+                            const  { amount, paymentId, delivery, products, orderId } = order;
                             return (
                                 <div className="summary-container" key={paymentId}>
                                     <h3 className="summary-header ">Order Confirmed</h3>
                                     <div className="summary-main">
                                         <div className="summary-left">
                                             <h4>
-                                                Payment Id : <span>{paymentId}</span>
+                                                Order Id : <span>{orderId}</span>
                                             </h4>
+                                           { paymentId &&  <h4>
+                                                Payment Id : <span>{paymentId}</span>
+                                            </h4>}
                                             <h4>
                                                 Total Amount : <span>₹ {amount}</span>
                                             </h4>

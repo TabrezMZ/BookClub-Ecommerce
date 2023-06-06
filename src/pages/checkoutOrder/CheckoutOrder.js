@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { useProduct } from "../../context/ProductContext";
 import { CheckoutPrice } from "./CheckoutPrice";
 import './CheckoutOrder.css'
+import { toast } from "react-toastify";
 
 export const CheckoutOrder = () => {
   const navigate = useNavigate()
@@ -12,6 +13,7 @@ export const CheckoutOrder = () => {
 
 
   const deleteAddress = (val) => {
+    toast.error('Address deleted')
     productDispatch({ type: "DELETE_ADDRESS", payload: val })
   }
   const editAddress = (val) => {

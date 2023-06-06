@@ -3,7 +3,7 @@ import { addToWishList, removeFromWishlist } from "../../Services/WishlistServic
 import { addToCart } from "../../Services/CartService";
 import { useNavigate } from "react-router-dom";
 import "./WishlistPage.css";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 
 export const WishlistPage = () => {
   const navigate = useNavigate();

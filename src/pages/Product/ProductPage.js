@@ -4,7 +4,7 @@ import { addToWishList, removeFromWishlist } from "../../Services/WishlistServic
 import { addToCart } from "../../Services/CartService"
 import './Product.css'
 import { useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast"
+import { toast } from "react-toastify";
 
 export const ProductPage = () => {
   const navigate = useNavigate();

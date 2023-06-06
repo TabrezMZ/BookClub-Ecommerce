@@ -18,7 +18,7 @@ export const addToCart = async (productItem, productDispatch, toast) => {
             }
         })
         productDispatch({ type: 'ADD_TO_CART_PRODUCT', payload: response.data.cart })
-        toast.success('product add in cart succesfully')
+        toast.success("Added In Cart !");
     } catch (error) {
         console.error(error)
     }
@@ -32,7 +32,7 @@ export const removeFromCart = async (productItem, productDispatch, toast) => {
             }
         })
         productDispatch({ type: 'REMOVE_FROM_CART_PRODUCT', payload: response.data.cart })
-        toast.success('product remove from cart succesfully')
+        toast.error('remove from cart')
     } catch (error) {
         console.error(error);
     }

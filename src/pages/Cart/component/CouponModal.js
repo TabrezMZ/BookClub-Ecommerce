@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useProduct } from "../../../context/ProductContext";
 import '../CartPage.css'
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 
 export const CouponModal = ({ setCouponModal }) => {
     const { couponValue, setCouponValue } = useProduct()

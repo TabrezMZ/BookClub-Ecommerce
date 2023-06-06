@@ -20,7 +20,7 @@ export const addToWishList = async (productItem, productDispatch, toast) => {
             }
         })
         productDispatch({ type: 'ADD_TO_WISHLIST_PRODUCT', payload: response.data.wishlist })
-        toast.success('product add in wishlist succesfully')
+        toast.success('added in wishlist ')
     } catch (error) {
         console.error(error)
     }
@@ -35,7 +35,7 @@ export const removeFromWishlist = async (productItem, productDispatch, toast) =>
             }
         })
         productDispatch({ type: 'REMOVE_FROM_WISHLIST_PRODUCT', payload: response.data.wishlist })
-        toast.success('product remove from wishlist succesfully')
+        toast.error('remove from wishlist ')
     } catch (error) {
         console.error(error);
     }

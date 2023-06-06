@@ -1,4 +1,4 @@
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 import { addQuantityInCart, removeQuantityInCart, removeFromCart } from "../../../Services/CartService";
 import { addToWishList } from "../../../Services/WishlistService";
 import { useProduct } from "../../../context/ProductContext";

@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom"
 import { useProduct } from "../../context/ProductContext"
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 
 export const AddressForm = () => {
     const { productState, productDispatch, addressForm, setAddressForm } = useProduct();
