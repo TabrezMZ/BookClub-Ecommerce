@@ -24,6 +24,7 @@ $ npm start
 - Wishlist managment
 - Address Managment
 - Checkout page
+- Order History
 - Payment gateway integration
 - Authentication:
   - User Signup
