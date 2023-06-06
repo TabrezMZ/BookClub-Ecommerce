@@ -67,6 +67,9 @@ export const CheckoutPrice = ({ setMsg }) => {
           delivery: orderAddress,
         };
         setOrder((prev)=> [...prev, orderData])
+       setTimeout(() => {
+        navigate('/profile/order-summary')
+       }, 1000);
       },
       prefill: {
         name: `${firstName} ${lastName}`,
@@ -97,6 +100,9 @@ export const CheckoutPrice = ({ setMsg }) => {
         delivery: orderAddress,
       };
       setOrder((prev)=> [...prev, orderData])
+      setTimeout(() => {
+        navigate('/profile/order-summary')
+       }, 1000);
     }
   }
 
